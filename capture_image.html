@@ -21,7 +21,7 @@
             const imageList = document.getElementById('image-list');
             imageList.innerHTML = '';
             try {
-                const response = await fetch('/cgi-bin/webcam2.cgi?list');
+                const response = await fetch('/cgi-bin/webcam.cgi?list');
                 const imageNames = await response.json();
                 for (const imageName of imageNames) {
                     const link = document.createElement('a');
