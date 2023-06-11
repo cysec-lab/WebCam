@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>一般ユーザ用アルバム画面</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>見守りカメラ</h1>
+  </header>
+
+  <div id="content">
+    <aside>
+      <h2>メニュー</h2>
+      <ul>
+        <li><a href="index.html">■ カメラ映像</a></li>
+        <li>■ アルバム</li>
+      </ul>
+    </aside>
+
+    <main>
+      <h2>■ アルバム</h2>
+
+      <p class="message" id="message"></p>
+      <div class="submenu">
+        写真を撮ってアルバムに追加保存する：
+        <button id="capture-button">保存</button>
+      </div>
+
+      <div class="submenu">
+        <ul id="filelist">
+          保存済みの画像一覧（ファイル名をクリックすると画像が見られます）
+          <div id="image-list"></div>
+        </ul>
+      </div>
+
+    </main>
+  </div>
+
+  <br>
+  <hr>
+
+  <!--
+  <div id="versionInfo">
+    version：情報なし
+  </div>
+  -->
+  <script src="script.js"></script>
+</body>
+</html>
