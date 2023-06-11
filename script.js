@@ -1,3 +1,4 @@
+//Take a Picture
 document.getElementById('capture-button').addEventListener('click', function() {
     fetch('/cgi-bin/capture.cgi').then(function(response) {
         return response.text();
@@ -7,6 +8,7 @@ document.getElementById('capture-button').addEventListener('click', function() {
     });
 });
 
+//List and Rename
 function loadImages() {
     fetch('/cgi-bin/list.cgi').then(function(response) {
         return response.json();
@@ -28,10 +30,14 @@ function loadImages() {
             var renameButton = document.createElement('button');
             renameButton.textContent = '変更';
             renameButton.addEventListener('click', function() {
-                var newName = renameInput.value;
+                var newName = renameInput.value.trim();
+                if (newName === '') {
+                    alert('名前を入力してください');
+                    return;
+                }
                 console.log(newName)
-                // Do not append the ".jpg" extension to the new name
-                fetch('/cgi-bin/rename.cgi?old=' + image + '&new=' + newName).then(function(response) {
+                newName += ".jpg";
+                fetch('/cgi-bin/rename.cgi?old=' + image + '&new=' + encodeURI(newName)).then(function(response) {
                     return response.text();
                 }).then(function(text) {
                     console.log('Image renamed:', text);
@@ -48,6 +54,7 @@ function loadImages() {
 loadImages();
 
 
+//Take Picture For Main Page
 function takePicture() {
     fetch('/cgi-bin/takepicture.cgi')
         .then(function(response) {

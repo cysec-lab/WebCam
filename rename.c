@@ -1,11 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define RENAME_COMMAND "mv \"/usr/local/apache2/htdocs/images/%s\" \"/usr/local/apache2/htdocs/images/%s\""
 
-char *get_param(const char *param)
-{
+void url_decode(char *str) {
+    char *p = str;
+    char code[3] = {0};
+    unsigned long ascii = 0;
+    char *end = NULL;
+
+    while (*p) {
+        if (*p == '%') {
+            memcpy(code, ++p, 2);
+            ascii = strtoul(code, &end, 16);
+            if (end != code + 2) {
+                printf("Failed to decode URL\n");
+                exit(EXIT_FAILURE);
+            }
+            *str++ = (char)ascii;
+            p += 2;
+        } else if (*p == '+') {
+            *str++ = ' ';
+            p++;
+        } else {
+            *str++ = *p++;
+        }
+    }
+
+    *str = '\0';
+}
+
+char *get_param(const char *param) {
     char *query = getenv("QUERY_STRING");
     if (query == NULL) return NULL;
 
@@ -29,13 +56,14 @@ char *get_param(const char *param)
     return value;
 }
 
-int main()
-{
+int main() {
     char *old_name = get_param("old");
     char *new_name = get_param("new");
 
-    if (old_name == NULL || new_name == NULL)
-    {
+    url_decode(old_name);
+    url_decode(new_name);
+
+    if (old_name == NULL || new_name == NULL) {
         printf("Content-Type: text/plain\n\n");
         printf("Invalid parameters.\n");
         free(old_name);
@@ -48,13 +76,10 @@ int main()
 
     int result = system(command);
 
-    if (result == 0)
-    {
+    if (result == 0) {
         printf("Content-Type: text/plain\n\n");
         printf("Image successfully renamed: %s\n", new_name);
-    }
-    else
-    {
+    } else {
         printf("Content-Type: text/plain\n\n");
         printf("Error renaming image. Error code: %d\n", result);
     }
@@ -64,4 +89,3 @@ int main()
 
     return 0;
 }
-
