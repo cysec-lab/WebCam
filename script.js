@@ -58,3 +58,10 @@ function takePicture() {
             document.getElementById('latestImage').src = "/images/now.jpg?"+new Date().getTime();
         });
 }
+
+//Update
+window.onload = function() {
+    document.getElementById("updateButton").addEventListener("click", function() {
+        fetch('http://localhost/cgi-bin/update.cgi');
+    });
+}
