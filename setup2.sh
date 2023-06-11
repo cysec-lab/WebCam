@@ -3,6 +3,8 @@ cd ..
 cd WebCam
 sudo rm /usr/local/apache2/htdocs/*
 sudo rm /usr/local/apache2/cgi-bin/*
+sudo mkdir /usr/local/apache2/htdocs/images
+sudo chown daemon:daemon /usr/local/apache2/htdocs/images
 sudo chmod +w /usr/local/apache2/htdocs
 sudo mv index.html /usr/local/apache2/htdocs
 sudo mv album.html /usr/local/apache2/htdocs
@@ -12,3 +14,4 @@ sudo mv capture.c /usr/local/apache2/cgi-bin
 sudo mv list.c /usr/local/apache2/cgi-bin
 sudo mv rename.c /usr/local/apache2/cgi-bin
 sudo mv takepicture.c /usr/local/apache2/cgi-bin
+sudo mv update.c /usr/local/apache2/cgi-bin
