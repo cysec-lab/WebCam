@@ -3,11 +3,12 @@
 #include <curl/curl.h>
 
 int main() {
-    CURL *curl;
-    CURLcode res;
+    //CURL *curl;
+    //CURLcode res;
 
     system("raspistill -o /usr/local/apache2/htdocs/images/now.jpg -t 100");
 
+    /*
     struct curl_httppost *formpost=NULL;
     struct curl_httppost *lastptr=NULL;
     struct curl_slist *headerlist=NULL;
@@ -44,6 +45,7 @@ int main() {
         curl_slist_free_all (headerlist);
     }
     curl_global_cleanup();
+    */
 
     printf("Content-type: text/plain\n\n");
     printf("Picture taken and sent.");
