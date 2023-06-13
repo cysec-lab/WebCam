@@ -1,19 +1,11 @@
-//Take a Picture
-document.getElementById('capture-button').addEventListener('click', function() {
-    fetch('/cgi-bin/capture.cgi').then(function(response) {
-        return response.text();
-    }).then(function(text) {
-        console.log('Image captured:', text);
-        loadImages();
-    });
-});
-
-//List and Rename
-function loadImages() {
-    fetch('/cgi-bin/list.cgi').then(function(response) {
-        return response.json();
-    }).then(function(images) {
-        var list = document.getElementById('image-list');
+async function loadImages() {
+    try {
+        const response = await fetch('/cgi-bin/list.cgi');
+        if (!response.ok) {
+            throw new Error('Server response was not ok.');
+        }
+        const images = await response.json();
+        const list = document.getElementById('image-list');
         list.innerHTML = '';
         images.forEach(function(image) {
             var item = document.createElement('li');
@@ -29,46 +21,50 @@ function loadImages() {
 
             var renameButton = document.createElement('button');
             renameButton.textContent = '変更';
-            renameButton.addEventListener('click', function() {
+            renameButton.addEventListener('click', async function() {
                 var newName = renameInput.value.trim();
                 if (newName === '') {
                     alert('名前を入力してください');
                     return;
                 }
                 console.log(newName)
-                newName += ".jpg";
-                fetch('/cgi-bin/rename.cgi?old=' + image + '&new=' + encodeURI(newName)).then(function(response) {
-                    return response.text();
-                }).then(function(text) {
-                    console.log('Image renamed:', text);
-                    loadImages();
-                });
+                
+                const renameResponse = await fetch('/cgi-bin/rename.cgi?old=' + image + '&new=' + encodeURI(newName));
+                const text = await renameResponse.text();
+                console.log('Image renamed:', text);
+                loadImages();
             });
             item.appendChild(renameButton);
 
             list.appendChild(item);
         });
-    });
+    } catch (error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+    }
 }
 
 loadImages();
 
-
-//Take Picture For Main Page
-function takePicture() {
-    fetch('/cgi-bin/takepicture.cgi')
-        .then(function(response) {
-            return response.text();
-        })
-        .then(function(text) {
-            console.log('Picture taken:', text);
-            document.getElementById('latestImage').src = "/images/now.jpg?"+new Date().getTime();
-        });
+async function takePicture() {
+    try {
+        const response = await fetch('/cgi-bin/takepicture.cgi');
+        const text = await response.text();
+        console.log('Picture taken:', text);
+        document.getElementById('latestImage').src = "/images2/now.jpg?" + new Date().getTime();
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
-//Update
 window.onload = function() {
-    document.getElementById("updateButton").addEventListener("click", function() {
-        fetch('http://localhost/cgi-bin/update.cgi');
+    document.getElementById("updateButton").addEventListener("click", async function() {
+        await fetch('/cgi-bin/update.cgi');
     });
-}
+
+    document.getElementById('capture-button').addEventListener('click', async function() {
+        const response = await fetch('/cgi-bin/capture.cgi');
+        const text = await response.text();
+        console.log('Image captured:', text);
+        loadImages();
+    });
+};
