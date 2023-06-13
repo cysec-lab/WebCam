@@ -3,7 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 
-#define RENAME_COMMAND "mv \"/usr/local/apache2/htdocs/images/%s\" \"/usr/local/apache2/htdocs/images/%s\""
+#define RENAME_COMMAND "mv /usr/local/apache2/htdocs/images/%s /usr/local/apache2/htdocs/images/%s"
+//#define RENAME_COMMAND "mv \"/usr/local/apache2/htdocs/images/%s\" \"/usr/local/apache2/htdocs/images/%s\""
 
 void url_decode(char *str) {
     char *p = str;
@@ -12,15 +13,9 @@ void url_decode(char *str) {
     char *end = NULL;
 
     while (*p) {
-        if (*p == '%') {
-            memcpy(code, ++p, 2);
-            ascii = strtoul(code, &end, 16);
-            if (end != code + 2) {
-                printf("Failed to decode URL\n");
-                exit(EXIT_FAILURE);
-            }
-            *str++ = (char)ascii;
-            p += 2;
+        if (*p == '%' && *(p+1) == '2' && *(p+2) == '0') { // detect '%20'
+            *str++ = ' ';
+            p += 3;
         } else if (*p == '+') {
             *str++ = ' ';
             p++;
