@@ -17,17 +17,17 @@ int main(void) {
     // 写真を撮り、ファイルとして保存
     system("raspistill -q 10 -o /usr/local/apache2/htdocs/images2/now.jpg -t 100");
 
-    // libcurlを初期化します
+    // libcurlを初期化
     curl_global_init(CURL_GLOBAL_ALL);
 
-    // フォームにデータを追加。アップロードするファイル名は写真を保存したパスと同じ。
+    // フォームにデータを追加。アップロードするファイル名は写真を保存したパスと同じ
     curl_formadd(&formpost,
                  &lastptr,
                  CURLFORM_COPYNAME, "file_upload",
                  CURLFORM_FILE, "/usr/local/apache2/htdocs/images2/now.jpg",
                  CURLFORM_END);
 
-    // idとapitokenをハードコードします。
+    // idとapitokenをハードコード
     curl_formadd(&formpost,
                  &lastptr,
                  CURLFORM_COPYNAME, "id",
