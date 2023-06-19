@@ -12,7 +12,7 @@ tar xvf apr-util-1.6.1.tar.gz
 mv apr-1.7.0 httpd-2.4.49/srclib/apr
 mv apr-util-1.6.1 httpd-2.4.49/srclib/apr-util
 cd ~/httpd-2.4.49
-./configure --prefix=/usr/local/apache2 --with-included-apr --with-expat=/usr/include/ --enable-auth-basic --enable-cgi
+./configure --prefix=/usr/local/apache2 --with-included-apr --with-expat=/usr/include/
 sudo make
 sudo make install
 /usr/local/apache2/bin/httpd -v
