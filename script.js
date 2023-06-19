@@ -68,3 +68,19 @@ window.onload = function() {
         loadImages();
     });
 };
+
+function update() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/cgi-bin/update.cgi', true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if (result.includes("Download succeeded!")) {
+                alert("Update succeeded!");
+            } else {
+                alert("Update failed!");
+            }
+        }
+    };
+    xhr.send();
+}
