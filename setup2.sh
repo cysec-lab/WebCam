@@ -15,4 +15,3 @@ sudo mv list.c /usr/local/apache2/cgi-bin
 sudo mv rename.c /usr/local/apache2/cgi-bin
 sudo mv takepicture.c /usr/local/apache2/cgi-bin
 sudo mv update.c /usr/local/apache2/cgi-bin
-sudo mv httpd.conf /usr/local/apache2/conf/
