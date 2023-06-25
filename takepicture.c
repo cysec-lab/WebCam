@@ -14,13 +14,12 @@ void read_target_file(char *iptarget, char *id, char *apitoken) {
     }
 
     fgets(iptarget, BUFFER_SIZE, file);
-    iptarget[strcspn(iptarget, "\n")] = 0;  // 改行文字を除去
+    iptarget[strcspn(iptarget, "\n")] = 0;
     fgets(id, BUFFER_SIZE, file);
-    id[strcspn(id, "\n")] = 0;  // 改行文字を除去
+    id[strcspn(id, "\n")] = 0;
     fgets(apitoken, BUFFER_SIZE, file);
-    apitoken[strcspn(apitoken, "\n")] = 0;  // 改行文字を除去
-
-    fclose(file);  // ファイルを閉じる
+    apitoken[strcspn(apitoken, "\n")] = 0;
+    fclose(file);
 }
 
 int main(void) {

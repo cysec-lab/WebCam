@@ -1,76 +1,121 @@
 #include <stdio.h>
+#include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
+// ファイルを移動するコマンドを定義
 #define RENAME_COMMAND "mv /usr/local/apache2/htdocs/images/%s /usr/local/apache2/htdocs/images/%s"
-//#define RENAME_COMMAND "mv \"/usr/local/apache2/htdocs/images/%s\" \"/usr/local/apache2/htdocs/images/%s\""
 
-void url_decode(char *str) {
-    char *p = str;
-    char code[3] = {0};
-    unsigned long ascii = 0;
-    char *end = NULL;
+// URLデコード関数
+char *url_decode(const char *str) {
+  int d = 0; /* 文字列がデコードされたかどうかのフラグ */
 
-    while (*p) {
-        if (*p == '%' && *(p+1) == '2' && *(p+2) == '0') { // detect '%20'
-            *str++ = ' ';
-            p += 3;
-        } else if (*p == '+') {
-            *str++ = ' ';
-            p++;
-        } else {
-            *str++ = *p++;
+  char *dStr = malloc(strlen(str) + 1); // デコード後の文字列を格納するためのメモリを確保
+  char eStr[] = "00"; /* 16進数のコード用 */
+
+  strcpy(dStr, str); // 入力文字列をコピー
+
+  // デコードが完了するまでループ
+  while(!d) {
+    d = 1; // フラグを初期化
+    int i; // 文字列のカウンタ
+
+    // 文字列の各文字を調べる
+    for(i=0; i<strlen(dStr); ++i) {
+
+      // '%'を見つけたら
+      if(dStr[i] == '%') {
+        if(dStr[i+1] == 0)
+          return dStr; // 文字列の終端に達した場合はデコード済みの文字列を返す
+
+        // 2つの16進数文字を見つけたら
+        if(isxdigit(dStr[i+1]) && isxdigit(dStr[i+2])) {
+
+          d = 0; // フラグをクリア
+
+          // 次の2つの数字を結合
+          eStr[0] = dStr[i+1];
+          eStr[1] = dStr[i+2];
+
+          // 16進数を10進数に変換
+          long int x = strtol(eStr, NULL, 16);
+
+          // 16進数を削除
+          memmove(&dStr[i+1], &dStr[i+3], strlen(&dStr[i+3])+1);
+
+          // デコードした文字を挿入
+          dStr[i] = x;
         }
+      }
+      // '+'を見つけたらスペースに変換
+      else if(dStr[i] == '+') { dStr[i] = ' '; }
     }
+  }
 
-    *str = '\0';
+  // デコード済みの文字列を返す
+  return dStr;
 }
 
+// 特定のパラメータを取得する関数
 char *get_param(const char *param) {
-    char *query = getenv("QUERY_STRING");
-    if (query == NULL) return NULL;
+    char *query = getenv("QUERY_STRING"); // クエリ文字列を取得
+    if (query == NULL) return NULL; // クエリがなければNULLを返す
 
     char *param_eq = malloc(strlen(param) + 2);
-    sprintf(param_eq, "%s=", param);
+    sprintf(param_eq, "%s=", param); // パラメータ名に"="を付ける
 
-    char *start = strstr(query, param_eq);
-    free(param_eq);
+    char *start = strstr(query, param_eq); // パラメータ名がクエリ内にあるか探す
+    free(param_eq); // メモリを解放
 
-    if (start == NULL) return NULL;
+    if (start == NULL) return NULL; // パラメータが見つからなければNULLを返す
 
-    start += strlen(param) + 1; // Skip past "param="
+    start += strlen(param) + 1; // パラメータ名と"="をスキップ
 
-    char *end = strchr(start, '&');
-    if (end == NULL) end = start + strlen(start); // No more params
+    char *end = strchr(start, '&'); // 次のパラメータの開始位置を探す
+    if (end == NULL) end = start + strlen(start); // 次のパラメータがなければ現在のパラメータの終わりまでとする
 
-    char *value = malloc(end - start + 1);
-    strncpy(value, start, end - start);
-    value[end - start] = '\0';
+    char *value = malloc(end - start + 1); // パラメータ値を格納するためのメモリを確保
+    strncpy(value, start, end - start); // パラメータ値をコピー
+    value[end - start] = '\0'; // 文字列の終端にヌル文字をセット
 
+    // パラメータ値を返す
     return value;
 }
 
 int main() {
-    char *old_name = get_param("old");
-    char *new_name = get_param("new");
+    char *old_name = get_param("old"); // "old"パラメータを取得
+    char *new_name = get_param("new"); // "new"パラメータを取得
 
-    url_decode(old_name);
-    url_decode(new_name);
+    // "old"パラメータが存在すればURLデコードする
+    if (old_name != NULL) {
+        char* decoded_old_name = url_decode(old_name);
+        free(old_name); // メモリを解放
+        old_name = decoded_old_name; // デコードした値をセット
+    }
+
+    // "new"パラメータが存在すればURLデコードする
+    if (new_name != NULL) {
+        char* decoded_new_name = url_decode(new_name);
+        free(new_name); // メモリを解放
+        new_name = decoded_new_name; // デコードした値をセット
+    }
 
     if (old_name == NULL || new_name == NULL) {
         printf("Content-Type: text/plain\n\n");
         printf("Invalid parameters.\n");
-        free(old_name);
-        free(new_name);
-        return 1;
+        free(old_name); // メモリを解放
+        free(new_name); // メモリを解放
+        return 1; // エラーコードを返す
     }
 
+    // ファイルを移動するコマンドを作成
     char command[512];
     snprintf(command, sizeof(command), RENAME_COMMAND, old_name, new_name);
 
+    // コマンドを実行
     int result = system(command);
 
+    // 結果に応じてメッセージを出力
     if (result == 0) {
         printf("Content-Type: text/plain\n\n");
         printf("Image successfully renamed: %s\n", new_name);
@@ -79,6 +124,7 @@ int main() {
         printf("Error renaming image. Error code: %d\n", result);
     }
 
+    // メモリを解放
     free(old_name);
     free(new_name);
 
