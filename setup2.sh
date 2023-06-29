@@ -17,3 +17,4 @@ sudo mv list.c /usr/local/apache2/cgi-bin
 sudo mv rename.c /usr/local/apache2/cgi-bin
 sudo mv takepicture.c /usr/local/apache2/cgi-bin
 sudo mv update.c /usr/local/apache2/cgi-bin
+echo "" > /usr/local/apache2/cgi-bin/target.txt
