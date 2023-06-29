@@ -5,8 +5,10 @@ sudo rm /usr/local/apache2/htdocs/*
 sudo rm /usr/local/apache2/cgi-bin/*
 sudo mkdir /usr/local/apache2/htdocs/images
 sudo mkdir /usr/local/apache2/htdocs/images2
+sudo mkdir /usr/local/apache2/downloads
 sudo chown daemon:daemon /usr/local/apache2/htdocs/images
 sudo chown daemon:daemon /usr/local/apache2/htdocs/images2
+sudo chown daemon:daemon /usr/local/apache2/downloads
 sudo chmod +w /usr/local/apache2/htdocs
 sudo mv index.html /usr/local/apache2/htdocs
 sudo mv album.html /usr/local/apache2/htdocs
