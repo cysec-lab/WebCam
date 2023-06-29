@@ -12,7 +12,7 @@ tar xvf apr-util-1.6.3.tar.gz
 mv apr-1.7.4 httpd-2.4.49/srclib/apr
 mv apr-util-1.6.3 httpd-2.4.49/srclib/apr-util
 cd ~/httpd-2.4.49
-./configure --prefix=/usr/local/apache2 --with-included-apr --with-expat=/usr/include/
+LDFLAGS=-latomic ./configure --prefix=/usr/local/apache2 
 sudo make
 sudo make install
 /usr/local/apache2/bin/httpd -v
