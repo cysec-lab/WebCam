@@ -1,5 +1,4 @@
 #!/bin/sh
-
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get install -y build-essential libpcre3 libpcre3-dev libssl-dev libexpat1-dev libcurl4-openssl-dev
@@ -17,7 +16,7 @@ cd ~/httpd-2.4.49
 LDFLAGS=-latomic ./configure --prefix=/usr/local/apache2 
 sudo make
 sudo make install
-
+#Apache詳細
 cd ..
 cd WebCam
 sudo rm /usr/local/apache2/htdocs/*
@@ -40,7 +39,7 @@ sudo mv takepicture.c /usr/local/apache2/cgi-bin
 sudo mv update.c /usr/local/apache2/cgi-bin
 echo "" > /usr/local/apache2/cgi-bin/target.txt
 sudo usermod -a -G video daemon
-
+#コンパイル
 cd ..
 cd /usr/local/apache2/cgi-bin
 gcc capture.c -o capture.cgi
