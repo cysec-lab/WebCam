@@ -10,6 +10,7 @@ sudo chown daemon:daemon /usr/local/apache2/htdocs/images
 sudo chown daemon:daemon /usr/local/apache2/htdocs/images2
 sudo chown daemon:daemon /usr/local/apache2/downloads
 sudo chmod +w /usr/local/apache2/htdocs
+sudo cp httpd.conf /usr/local/apache2/conf/
 sudo cp index.html /usr/local/apache2/htdocs
 sudo cp album.html /usr/local/apache2/htdocs
 sudo cp style.css /usr/local/apache2/htdocs
