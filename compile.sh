@@ -6,3 +6,7 @@ gcc list.c -o list.cgi
 gcc rename.c -o rename.cgi
 gcc takepicture.c -o takepicture.cgi -lcurl
 gcc update.c -o update.cgi
+gcc download.c -o download.cgi -lcurl
+gcc reset.c -o reset.cgi
+gcc version.c -o version.cgi
+
