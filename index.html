@@ -6,11 +6,15 @@
     <title>一般ユーザ用TOP画面</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <meta http-equiv="refresh" content="5">
-    <script src="script.js"></script>
+    <meta http-equiv="refresh" content="100">
+    <script src="script.js?v=1.0"></script>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 </head>
 
-<body onload="takePicture()">
+<body>
     <header>
         <h1>見守りカメラ</h1>
     </header>
@@ -22,18 +26,31 @@
                 <li>■ カメラ映像</li>
                 <li><a href="album.html">■ アルバム</a></li>
                 <button id="updateButton" onclick="update()">アップデート</button>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <button id="resetButton" onclick="resetCamera()">初期化</button>
             </ul>
         </aside>
         <main>
             <h2>■ カメラ映像</h2>
             <div class=pic>
-                <img id="latestImage" src="/images2/now.jpg" width="100%" >
-            </div> 
+                <img id="latestImage" src="/images2/now.jpg" width="50%">
+            </div>
         </main>
     </div>
-
     <br>
     <hr>
+    version：<span id="version"></span>
+    <p id="ip-address">IPアドレス: </p>
+    <p id="user-agent">User Agent: </p>
+    
 </body>
-</html>
 
+</html>
