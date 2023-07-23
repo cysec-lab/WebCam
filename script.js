@@ -56,18 +56,25 @@ async function takePicture() {
     }
 }
 
-window.onload = function() {
-    document.getElementById("updateButton").addEventListener("click", async function() {
-        await fetch('/cgi-bin/update.cgi');
-    });
+function setupEventListeners() {
+    const updateButton = document.getElementById("updateButton");
+    if (updateButton) {
+        updateButton.addEventListener("click", async function() {
+            await fetch('/cgi-bin/update.cgi');
+        });
+    }
 
-    document.getElementById('capture-button').addEventListener('click', async function() {
-        const response = await fetch('/cgi-bin/capture.cgi');
-        const text = await response.text();
-        console.log('Image captured:', text);
-        loadImages();
-    });
-};
+    const captureButton = document.getElementById('capture-button');
+    if (captureButton) {
+        captureButton.addEventListener('click', async function() {
+            const response = await fetch('/cgi-bin/capture.cgi');
+            const text = await response.text();
+            console.log('Image captured:', text);
+            loadImages();
+        });
+    }
+}
+
 
 function update() {
     var xhr = new XMLHttpRequest();
@@ -84,3 +91,51 @@ function update() {
     };
     xhr.send();
 }
+
+function resetCamera() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/cgi-bin/reset.cgi', true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if (result.includes("Reset succeeded!")) {
+                alert("Reset succeeded!");
+            } else {
+                alert("Reset failed!");
+            }
+        }
+    };
+    xhr.send();
+}
+
+function getIPAddress() {
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            const ipAddress = data.ip;
+            document.getElementById('ip-address').textContent += ipAddress;
+        });
+}
+
+// ユーザのUser Agentを取得する関数
+function getUserAgent() {
+    document.getElementById('user-agent').textContent += navigator.userAgent;
+}
+
+function getVersion() {
+    // バージョン情報を取得して表示
+    fetch('/cgi-bin/version.cgi')
+        .then(response => response.text())
+        .then(version => {
+            document.getElementById("version").textContent = version;
+        });
+}
+
+// ページのロードが完了した時にsetupEventListeners()関数を呼び出す
+document.addEventListener("DOMContentLoaded", function () {
+    takePicture();
+    setupEventListeners();
+    getIPAddress();
+    getUserAgent();
+    getVersion();
+});

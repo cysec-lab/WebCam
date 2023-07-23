@@ -6,6 +6,7 @@
   <title>一般ユーザ用アルバム画面</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
 </head>
 
 <body>
@@ -20,6 +21,16 @@
         <li><a href="index.html">■ カメラ映像</a></li>
         <li>■ アルバム</li>
         <button id="updateButton" onclick="update()">アップデート</button>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <button id="resetButton" onclick="resetCamera()">初期化</button>
       </ul>
     </aside>
 
@@ -44,12 +55,9 @@
 
   <br>
   <hr>
-
-  <!--
-  <div id="versionInfo">
-    version：情報なし
-  </div>
-  -->
-  <script src="script.js"></script>
+  version：<span id="version"></span>
+    <p id="ip-address">IPアドレス: </p>
+    <p id="user-agent">User Agent: </p>
+  
 </body>
 </html>
