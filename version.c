@@ -9,7 +9,7 @@ int main() {
     FILE *file;
 
     // バージョンファイルを開く
-    file = fopen("/usr/local/apache2/downloads/version.txt", "r");
+    file = fopen("version.txt", "r");
     if (file == NULL) {
         // ファイルを開けなかった場合はエラーを出力して終了
         printf("Content-type: text/plain\r\n\r\n");
