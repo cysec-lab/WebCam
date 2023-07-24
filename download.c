@@ -1,4 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/wait.h>
 #include <curl/curl.h>
 #include <archive.h>
 #include <archive_entry.h>
@@ -109,6 +113,34 @@ int main() {
 
     printf("Extraction succeeded!\n");
 
+    // update.shを実行
+    pid_t pid = fork();
+    if (pid == -1) {
+        perror("fork");
+        return 1;
+    } else if (pid == 0) {
+        // 子プロセス
+        char *const argv[] = {"/bin/sh", "-c", "./update.sh", NULL};
+        execv("/bin/sh", argv);
+        perror("execv");
+        exit(1);
+    } else {
+        // 親プロセス
+        int status;
+        waitpid(pid, &status, 0);
+        if (WIFEXITED(status)) {
+            int exit_status = WEXITSTATUS(status);
+            if (exit_status == 0) {
+                printf("update.sh execution succeeded!\n");
+            } else {
+                printf("update.sh execution failed with exit status: %d\n", exit_status);
+                return 1;
+            }
+        } else {
+            printf("update.sh execution failed\n");
+            return 1;
+        }
+    }
+
     return 0;
 }
-
