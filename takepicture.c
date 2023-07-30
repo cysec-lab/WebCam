@@ -13,11 +13,11 @@ void read_target_file(char *iptarget, char *id, char *apitoken) {
         exit(EXIT_FAILURE);
     }
 
-    fgets(iptarget, BUFFER_SIZE, file);
+    fgets(iptarget, BUFFER_SIZE - 1, file);
     iptarget[strcspn(iptarget, "\n")] = 0;
-    fgets(id, BUFFER_SIZE, file);
+    fgets(id, BUFFER_SIZE - 1, file);
     id[strcspn(id, "\n")] = 0;
-    fgets(apitoken, BUFFER_SIZE, file);
+    fgets(apitoken, BUFFER_SIZE - 1, file);
     apitoken[strcspn(apitoken, "\n")] = 0;
     fclose(file);
 }
@@ -82,7 +82,7 @@ int main(void) {
 
         curl_formfree(formpost);  // フォームポストデータを解放
 
-        curl_slist_free_all (headerlist);  // HTTPヘッダリストを解放
+        curl_slist_free_all(headerlist);  // HTTPヘッダリストを解放
     }
 
     return 0;
