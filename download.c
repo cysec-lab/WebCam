@@ -15,8 +15,7 @@ int main(void) {
     FILE *file;
     FILE *logFile;
     const char *download_path = "/usr/local/apache2/downloads/updatefile.tar.gz";
-    const char *url = "http://192.168.11.13/downloads/updatefile.tar.gz";
-    //const char *url = "https://handsoniotapp.com/downloads/updatefile.tar.gz";
+    const char *url = "https://handsoniotapp.com/downloads/updatefile.tar.gz";
     const char *log_path = "download_log.txt";
     const char *script_path = "/usr/local/apache2/cgi-bin/updatefile/update.sh";
 
