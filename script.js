@@ -82,15 +82,15 @@ function update() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            if (result.includes("Download succeeded!")) {
-                alert("Update succeeded!");
-            } else {
-                alert("Update failed!");
-            }
+            alert(result); // CGIプログラムからの応答をそのまま表示
+            // ここでページをリロード
+            location.reload();
         }
     };
     xhr.send();
 }
+
+
 
 function resetCamera() {
     var xhr = new XMLHttpRequest();
@@ -98,11 +98,8 @@ function resetCamera() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            if (result.includes("Reset succeeded!")) {
-                alert("Reset succeeded!");
-            } else {
-                alert("Reset failed!");
-            }
+            alert(result);
+            location.reload();
         }
     };
     xhr.send();
