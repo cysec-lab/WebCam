@@ -28,7 +28,9 @@ sudo cp version.txt /usr/local/apache2/cgi-bin
 echo "" > /usr/local/apache2/cgi-bin/target.txt
 
 sudo usermod -a -G video daemon
+
+
 username="user"
 password="password"
 htpasswd_file="/usr/local/apache2/htdocs/.htpasswd"
-htpasswd -b "$htpasswd_file" "$username" "$password"
+htpasswd -bc "$htpasswd_file" "$username" "$password"
