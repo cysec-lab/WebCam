@@ -82,15 +82,15 @@ function update() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            if (result.includes("Download succeeded!")) {
-                alert("Update succeeded!");
-            } else {
-                alert("Update failed!");
-            }
+            alert(result); // CGIプログラムからの応答をそのまま表示
+            // ここでページをリロード
+            location.reload();
         }
     };
     xhr.send();
 }
+
+
 
 function resetCamera() {
     var xhr = new XMLHttpRequest();
@@ -98,24 +98,35 @@ function resetCamera() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            if (result.includes("Reset succeeded!")) {
-                alert("Reset succeeded!");
-            } else {
-                alert("Reset failed!");
-            }
+            alert(result);
+            location.reload();
         }
     };
     xhr.send();
 }
 
 function getIPAddress() {
-    fetch('https://api.ipify.org?format=json')
-        .then(response => response.json())
-        .then(data => {
-            const ipAddress = data.ip;
-            document.getElementById('ip-address').textContent += ipAddress;
-        });
+    var noop = function() {};
+    var pc = new RTCPeerConnection({iceServers:[]});
+    pc.createDataChannel("");
+    pc.createOffer().then(function(sdp) {
+        pc.setLocalDescription(sdp);
+    });
+
+    pc.onicecandidate = function(ice) {
+        if (ice && ice.candidate && ice.candidate.candidate) {
+            var match = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate);
+            if (match) {
+                var localIP = match[1];
+                document.getElementById('ip-address').textContent += localIP;
+            } else {
+                console.warn('Local IP Address Not Found');
+            }
+            pc.onicecandidate = noop;
+        }
+    };
 }
+
 
 // ユーザのUser Agentを取得する関数
 function getUserAgent() {
