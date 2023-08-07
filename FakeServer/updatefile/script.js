@@ -133,7 +133,6 @@ function getVersion() {
 
 // ページのロードが完了した時にsetupEventListeners()関数を呼び出す
 document.addEventListener("DOMContentLoaded", function () {
-    takePicture();
     setupEventListeners();
     getIPAddress();
     getUserAgent();

