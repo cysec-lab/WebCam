@@ -2,6 +2,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+
 
 // ファイルを移動するコマンドを定義
 #define RENAME_COMMAND "mv /usr/local/apache2/htdocs/images/%s /usr/local/apache2/htdocs/images/%s"
