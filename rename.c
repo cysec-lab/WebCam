@@ -83,6 +83,7 @@ char *get_param(const char *param) {
 }
 
 int main() {
+    chdir("/usr/local/apache2/htdocs/images");
     char *old_name = get_param("old"); // "old"パラメータを取得
     char *new_name = get_param("new"); // "new"パラメータを取得
 
