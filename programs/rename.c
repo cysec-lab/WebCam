@@ -6,7 +6,7 @@
 
 
 // ファイルを移動するコマンドを定義
-#define RENAME_COMMAND "mv /usr/local/apache2/htdocs/images/%s /usr/local/apache2/htdocs/images/%s"
+#define RENAME_COMMAND "mv %s %s"
 
 // URLデコード関数
 char *url_decode(const char *str) {
