@@ -21,7 +21,7 @@ int main() {
     if (fgets(version, sizeof(version), file) == NULL) {
         // ファイルからの読み取りに失敗した場合はエラーを出力して終了
         printf("Content-type: text/plain\r\n\r\n");
-        printf("Error: Could not read version file.");
+        printf("情報なし");
         fclose(file);
         return 1;
     }
@@ -35,3 +35,4 @@ int main() {
 
     return 0;
 }
+

@@ -120,7 +120,6 @@ int main(void) {
 
             // スクリプトファイルに権限+xを付与
             if (chmod(script_path, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IROTH) == 0) {
-                printf("Script permissions changed successfully.\n");
             } else {
                 perror("Error changing script permissions");
                 return 1;
@@ -134,8 +133,10 @@ int main(void) {
             }
         }
     }
-
+     printf("Update successfully.\n");
     curl_global_cleanup();
     return 0;
 }
 //tar -czvf updatefile.tar.gz updatefile
+
+

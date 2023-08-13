@@ -106,25 +106,14 @@ function resetCamera() {
 }
 
 function getIPAddress() {
-    var noop = function() {};
-    var pc = new RTCPeerConnection({iceServers:[]});
-    pc.createDataChannel("");
-    pc.createOffer().then(function(sdp) {
-        pc.setLocalDescription(sdp);
-    });
-
-    pc.onicecandidate = function(ice) {
-        if (ice && ice.candidate && ice.candidate.candidate) {
-            var match = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate);
-            if (match) {
-                var localIP = match[1];
-                document.getElementById('ip-address').textContent += localIP;
-            } else {
-                console.warn('Local IP Address Not Found');
-            }
-            pc.onicecandidate = noop;
-        }
-    };
+    fetch('/cgi-bin/ip.cgi')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('ip-address').textContent += data;
+        })
+        .catch(error => {
+            console.error('Error fetching IP address:', error);
+        });
 }
 
 

@@ -110,20 +110,11 @@ int main() {
     }
 
     // ファイルを移動するコマンドを作成
-    char command[512];
+    char command[128];
     snprintf(command, sizeof(command), RENAME_COMMAND, old_name, new_name);
 
     // コマンドを実行
-    int result = system(command);
-
-    // 結果に応じてメッセージを出力
-    if (result == 0) {
-        printf("Content-Type: text/plain\n\n");
-        printf("Image successfully renamed: %s\n", new_name);
-    } else {
-        printf("Content-Type: text/plain\n\n");
-        printf("Error renaming image. Error code: %d\n", result);
-    }
+    system(command);
 
     // メモリを解放
     free(old_name);
