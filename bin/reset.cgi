@@ -24,10 +24,14 @@ if ! rm -rf /usr/local/apache2/htdocs/images/*; then
     log_error "/usr/local/apache2/htdocs/images 内のファイルの削除に失敗しました。"
 fi
 
+rm /usr/local/apache2/htdocs/*
 # /usr/local/apache2/backupから/usr/local/apache2/htdocsに特定のファイルをコピー
 files_to_copy=("index.html" "album.html" "style.css" "script.js")
 for file in "${files_to_copy[@]}"; do
     copy_file "/usr/local/apache2/backup/$file" "/usr/local/apache2/htdocs/$file"
 done
 
+cp /usr/local/apache2/backup/target.txt /usr/local/apache2/cgi-bin
+
 echo "初期化を完了しました"
+
