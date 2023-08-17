@@ -40,3 +40,7 @@ sudo chmod 775 /usr/local/apache2/downloads
 sudo chmod 775 /usr/local/apache2/backup
 sudo chmod 755 /usr/local/apache2/cgi-bin/*
 sudo chmod 755 /usr/local/apache2/htdocs/*
+
+sed -i '/exit 0/d' /etc/rc.local
+echo "/usr/local/apache2/bin/apachectl start" >> /etc/rc.local
+echo "exit 0" >> /etc/rc.local
