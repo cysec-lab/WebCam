@@ -30,12 +30,4 @@ for file in "${files_to_copy[@]}"; do
     copy_file "/usr/local/apache2/backup/$file" "/usr/local/apache2/htdocs/$file"
 done
 
-# .cgiと.txtファイルを/usr/local/apache2/backupから/usr/local/apache2/cgi-binにコピー
-for file in /usr/local/apache2/backup/*.{cgi,txt}; do
-    if [ -f "$file" ]; then
-        filename=$(basename "$file")
-        copy_file "$file" "/usr/local/apache2/cgi-bin/$filename"
-    fi
-done
-
-echo "完了"
+echo "初期化を完了しました"

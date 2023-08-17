@@ -31,7 +31,9 @@ sudo chown daemon:daemon /usr/local/apache2/htdocs/images2
 sudo chown daemon:daemon /usr/local/apache2/downloads
 sudo chown daemon:daemon /usr/local/apache2/backup
 sudo chown daemon:daemon /usr/local/apache2/cgi-bin
+sudo chown daemon:daemon /usr/local/apache2/cgi-bin/*
 sudo chown daemon:daemon /usr/local/apache2/htdocs
+sudo chown daemon:daemon /usr/local/apache2/htdocs/*
 sudo chmod 755 /usr/local/apache2/htdocs/images
 sudo chmod 755 /usr/local/apache2/htdocs/images2
 sudo chmod 775 /usr/local/apache2/downloads
