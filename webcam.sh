@@ -36,3 +36,5 @@ sudo chmod 755 /usr/local/apache2/htdocs/images
 sudo chmod 755 /usr/local/apache2/htdocs/images2
 sudo chmod 775 /usr/local/apache2/downloads
 sudo chmod 775 /usr/local/apache2/backup
+sudo chmod 755 /usr/local/apache2/cgi-bin/*
+sudo chmod 755 /usr/local/apache2/htdocs/*
