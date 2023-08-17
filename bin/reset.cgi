@@ -31,7 +31,7 @@ for file in "${files_to_copy[@]}"; do
     copy_file "/usr/local/apache2/backup/$file" "/usr/local/apache2/htdocs/$file"
 done
 
-cp /usr/local/apache2/backup/target.txt /usr/local/apache2/cgi-bin
+cp /usr/local/apache2/backup/version.txt /usr/local/apache2/cgi-bin
 
 echo "初期化を完了しました"
 
