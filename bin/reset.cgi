@@ -2,7 +2,6 @@
 
 # CGIプログラムとして、Content-Typeヘッダーを出力
 echo "Content-type: text/plain;charset=utf-8"
-echo ""
 
 # エラーメッセージを日本語で出力する関数
 log_error() {
