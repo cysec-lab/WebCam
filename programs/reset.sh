@@ -25,7 +25,7 @@ if ! rm -rf /usr/local/apache2/htdocs/images/*; then
 fi
 
 # /usr/local/apache2/backupから/usr/local/apache2/htdocsに特定のファイルをコピー
-files_to_copy=("index.html" "album.html" "style.css" "script.js")
+files_to_copy=("index.html" "album.html" "style.css" "index.js" "album.js")
 for file in "${files_to_copy[@]}"; do
     copy_file "/usr/local/apache2/backup/$file" "/usr/local/apache2/htdocs/$file"
 done

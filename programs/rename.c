@@ -81,6 +81,7 @@ char *get_param(const char *param) {
 }
 
 int main() {
+    printf("Content-Type: text/plain\n\n");
     chdir("/usr/local/apache2/htdocs/images");
     char *old_name = get_param("old"); // "old"パラメータを取得
     char *new_name = get_param("new"); // "new"パラメータを取得
@@ -111,6 +112,7 @@ int main() {
     char command[128];
     snprintf(command, sizeof(command), "mv %s %s", old_name, new_name);
     system(command);
+    printf("%s",new_name);
 
     // メモリを解放
     free(old_name);
