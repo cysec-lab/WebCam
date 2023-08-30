@@ -6,7 +6,8 @@
   <title>一般ユーザ用アルバム画面</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
+  <script src="album.js" defer></script>
+  <link rel="icon" href="data:image/x-icon;base64,iVBORw0KGgo=">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
       <ul>
         <li><a href="index.html">■ カメラ映像</a></li>
         <li>■ アルバム</li>
-        <button id="updateButton" onclick="update()">アップデート</button>
+        <li><button id="updateButton" onclick="update()">アップデート</button></li>
         <li>&nbsp;</li>
         <li>&nbsp;</li>
         <li>&nbsp;</li>
@@ -30,17 +31,16 @@
         <li>&nbsp;</li>
         <li>&nbsp;</li>
         <li>&nbsp;</li>
-        <button id="resetButton" onclick="resetCamera()">初期化</button>
+        <li><button id="resetButton" onclick="resetCamera()">初期化</button></li>
       </ul>
     </aside>
 
     <main>
       <h2>■ アルバム</h2>
-
       <p class="message" id="message"></p>
       <div class="submenu">
         写真を撮ってアルバムに追加保存する：
-        <button id="capture-button">保存</button>
+        <button id="capture-button" onclick="captureImage()">保存</button>
       </div>
 
       <div class="submenu">
@@ -49,15 +49,14 @@
           <div id="image-list"></div>
         </ul>
       </div>
-
     </main>
   </div>
 
   <br>
   <hr>
   version：<span id="version"></span>
-    <p id="ip-address">IPアドレス: </p>
-    <p id="user-agent">User Agent: </p>
-  
+  <p id="ip-address">IPアドレス: </p>
+  <p id="user-agent">User Agent: </p>
 </body>
+
 </html>

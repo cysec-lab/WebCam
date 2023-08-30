@@ -43,39 +43,6 @@ async function loadImages() {
     }
 }
 
-loadImages();
-
-async function takePicture() {
-    try {
-        const response = await fetch('/cgi-bin/takepicture.cgi');
-        const text = await response.text();
-        console.log('Picture taken:', text);
-        document.getElementById('latestImage').src = "/images2/now.jpg?" + new Date().getTime();
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-function setupEventListeners() {
-    const updateButton = document.getElementById("updateButton");
-    if (updateButton) {
-        updateButton.addEventListener("click", async function() {
-            await fetch('/cgi-bin/update.cgi');
-        });
-    }
-
-    const captureButton = document.getElementById('capture-button');
-    if (captureButton) {
-        captureButton.addEventListener('click', async function() {
-            const response = await fetch('/cgi-bin/capture.cgi');
-            const text = await response.text();
-            console.log('Image captured:', text);
-            loadImages();
-        });
-    }
-}
-
-
 function update() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/cgi-bin/update.cgi', true);
@@ -89,8 +56,6 @@ function update() {
     };
     xhr.send();
 }
-
-
 
 function resetCamera() {
     var xhr = new XMLHttpRequest();
@@ -116,8 +81,6 @@ function getIPAddress() {
         });
 }
 
-
-// ユーザのUser Agentを取得する関数
 function getUserAgent() {
     document.getElementById('user-agent').textContent += navigator.userAgent;
 }
@@ -131,11 +94,20 @@ function getVersion() {
         });
 }
 
-// ページのロードが完了した時にsetupEventListeners()関数を呼び出す
+function captureImage() {
+    fetch('/cgi-bin/capture.cgi')
+        .then(response => response.text())
+        .then(data => {
+            loadImages(); // 画像リストを再ロード
+        })
+        .catch(error => {
+            console.error('Error capturing image:', error);
+        });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-    takePicture();
-    setupEventListeners();
     getIPAddress();
     getUserAgent();
     getVersion();
+    loadImages();
 });

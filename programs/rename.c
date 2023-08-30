@@ -4,10 +4,6 @@
 #include <string.h>
 #include <unistd.h>
 
-
-// ファイルを移動するコマンドを定義
-#define RENAME_COMMAND "mv %s %s"
-
 // URLデコード関数
 char *url_decode(const char *str) {
   int d = 0; /* 文字列がデコードされたかどうかのフラグ */
@@ -85,6 +81,7 @@ char *get_param(const char *param) {
 }
 
 int main() {
+    printf("Content-Type: text/plain\n\n");
     chdir("/usr/local/apache2/htdocs/images");
     char *old_name = get_param("old"); // "old"パラメータを取得
     char *new_name = get_param("new"); // "new"パラメータを取得
@@ -111,12 +108,11 @@ int main() {
         return 1; // エラーコードを返す
     }
 
-    // ファイルを移動するコマンドを作成
+    //名前変更
     char command[128];
-    snprintf(command, sizeof(command), RENAME_COMMAND, old_name, new_name);
-
-    // コマンドを実行
+    snprintf(command, sizeof(command), "mv %s %s", old_name, new_name);
     system(command);
+    printf("%s",new_name);
 
     // メモリを解放
     free(old_name);
