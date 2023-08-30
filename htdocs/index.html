@@ -6,15 +6,15 @@
     <title>一般ユーザ用TOP画面</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <meta http-equiv="refresh" content="5">
-    <script src="script.js?v=1.0"></script>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
+
     <header>
         <h1>見守りカメラ</h1>
     </header>
@@ -40,8 +40,8 @@
         </aside>
         <main>
             <h2>■ カメラ映像</h2>
-            <div class=pic>
-                <img id="latestImage" src="/images2/now.jpg" width="50%">
+            <div class="pic">
+                <iframe id="cameraIframe" src="/images2/now.html" width="50%" height="300" frameborder="0"></iframe>
             </div>
         </main>
     </div>
@@ -50,7 +50,6 @@
     version：<span id="version"></span>
     <p id="ip-address">IPアドレス: </p>
     <p id="user-agent">User Agent: </p>
-    
 </body>
 
 </html>
