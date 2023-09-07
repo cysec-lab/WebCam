@@ -1,20 +1,3 @@
-async function takePicture() {
-    try {
-        const response = await fetch('/cgi-bin/takepicture.cgi', {
-            method: 'GET',
-            mode: 'same-origin',
-            credentials: 'include'  // クレデンシャルをリクエストに含める
-        });
-        
-        if (!response.ok) {
-            throw new Error('Server response was not ok. Status code: ' + response.status);
-        }
-        document.getElementById('latestImage').src = "/images2/now.jpg?" + new Date().getTime();
-    } catch (error) {
-        console.error('Error taking picture:', error);
-    }
-}
-
 function update() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/cgi-bin/update.cgi', true);
@@ -22,7 +5,6 @@ function update() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
             alert(result);
-            location.reload();
         }
     };
     xhr.send();
@@ -35,38 +17,31 @@ function resetCamera() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
             alert(result);
-            location.reload();
         }
     };
     xhr.send();
 }
 
-function getIPAddress() {
-    fetch('/cgi-bin/ip.cgi')
-        .then(response => response.text())
+function updateIframe() {
+    let iframe = document.getElementById("cameraIframe");
+    iframe.src = "/images2/now.jpg?time=" + new Date().getTime(); // タイムスタンプを付けてキャッシュを防ぐ
+}
+
+function getUserInfo() {
+    // UserInfo.cgiからすべての情報を取得する
+    fetch('/cgi-bin/UserInfo.cgi')
+        .then(response => response.json()) // CGIがJSON形式でデータを返すと仮定
         .then(data => {
-            document.getElementById('ip-address').textContent += data;
+            document.getElementById('version').textContent = data.version;
+            document.getElementById('ip-address').textContent = data.ip_address;
+            document.getElementById('user-agent').textContent = data.user_agent;
         })
         .catch(error => {
-            console.error('Error fetching IP address:', error);
-        });
-}
-
-function getUserAgent() {
-    document.getElementById('user-agent').textContent += navigator.userAgent;
-}
-
-function getVersion() {
-    fetch('/cgi-bin/version.cgi')
-        .then(response => response.text())
-        .then(version => {
-            document.getElementById("version").textContent = version;
+            console.error('Error fetching user info:', error);
         });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    takePicture();
-    getIPAddress();
-    getUserAgent();
-    getVersion();
+    getUserInfo();
+    setInterval(updateIframe, 5000); // 5秒ごとにupdateIframe関数を呼び出す
 });

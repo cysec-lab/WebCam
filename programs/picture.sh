@@ -26,3 +26,20 @@ curl -X POST "$iptarget" \
   -F "apitoken=$apitoken"
 
 
+sudo nano /etc/systemd/system/picture.service
+
+[Unit]
+Description=TakePicture
+
+[Service]
+ExecStart=/usr/local/apache2/cgi-bin/picture.sh
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+
+sudo systemctl enable picture.service
+sudo systemctl start picture.service
+
+sudo systemctl status picture.service

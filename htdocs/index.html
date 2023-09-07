@@ -6,8 +6,7 @@
     <title>一般ユーザ用TOP画面</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <meta http-equiv="refresh" content="5">
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -35,22 +34,25 @@
                 <li>&nbsp;</li>
                 <li>&nbsp;</li>
                 <li>&nbsp;</li>
+                <li>&nbsp;</li>
                 <button id="resetButton" onclick="resetCamera()">初期化</button>
             </ul>
         </aside>
         <main>
             <h2>■ カメラ映像</h2>
-            <div class=pic>
-                <img id="latestImage" src="/images2/now.jpg" width="50%">
+            <div class="pic">
+                <iframe id="cameraIframe" src="/images2/now.jpg" width="300%" height="500" frameborder="0"></iframe>
             </div>
         </main>
     </div>
     <br>
     <hr>
-    version：<span id="version"></span>
-    <p id="ip-address">IPアドレス: </p>
-    <p id="user-agent">User Agent: </p>
-    
+    <div id="UserInfo">
+        <p>version: <span id="version"></span></p>
+        <p>IPアドレス: <span id="ip-address"></span></p>
+        <p>User Agent: <span id="user-agent"></span></p>
+    </div>
+
 </body>
 
 </html>

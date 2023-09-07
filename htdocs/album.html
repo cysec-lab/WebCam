@@ -44,19 +44,28 @@
       </div>
 
       <div class="submenu">
-        <ul id="filelist">
-          保存済みの画像一覧（ファイル名をクリックすると画像が見られます）
-          <div id="image-list"></div>
-        </ul>
+        <table id="filelist">
+          <thead>
+            <tr>
+              保存済みの画像一覧（ファイル名をクリックすると画像が見られます）
+            </tr>
+          </thead>
+          <tbody id="image-list">
+          </tbody>
+        </table>
       </div>
+      
     </main>
   </div>
 
-  <br>
-  <hr>
-  version：<span id="version"></span>
-  <p id="ip-address">IPアドレス: </p>
-  <p id="user-agent">User Agent: </p>
+  <footer>
+    <hr>
+    <div id="UserInfo">
+        <p>version: <span id="version"></span></p>
+        <p>IPアドレス: <span id="ip-address"></span></p>
+        <p>User Agent: <span id="user-agent"></span></p>
+    </div>
+  </footer>
 </body>
 
 </html>

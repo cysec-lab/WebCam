@@ -8,17 +8,18 @@ async function loadImages() {
         const list = document.getElementById('image-list');
         list.innerHTML = '';
         images.forEach(function(image) {
-            var item = document.createElement('li');
+            var row = document.createElement('tr');
+            var cell = document.createElement('td');
+            
             var link = document.createElement('a');
             link.href = '/images/' + image;
             link.textContent = image;
-            item.appendChild(link);
-
+            link.className = 'filename';
+            
             var renameInput = document.createElement('input');
             renameInput.type = 'text';
             renameInput.placeholder = "";
-            item.appendChild(renameInput);
-
+            
             var renameButton = document.createElement('button');
             renameButton.textContent = '変更';
             renameButton.addEventListener('click', async function() {
@@ -27,22 +28,25 @@ async function loadImages() {
                     alert('名前を入力してください');
                     return;
                 }
-                console.log(newName)
                 
                 const renameResponse = await fetch('/cgi-bin/rename.cgi?old=' + image + '&new=' + encodeURI(newName));
                 const text = await renameResponse.text();
-                console.log('Image renamed:', text);
+                
                 loadImages();
             });
-            item.appendChild(renameButton);
 
-            list.appendChild(item);
+            cell.appendChild(link);
+            cell.appendChild(renameInput);
+            cell.appendChild(renameButton);
+            
+            row.appendChild(cell);
+            list.appendChild(row);
         });
     } catch (error) {
         console.log('There has been a problem with your fetch operation: ' + error.message);
     }
 }
-
+  
 function update() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/cgi-bin/update.cgi', true);
@@ -70,30 +74,6 @@ function resetCamera() {
     xhr.send();
 }
 
-function getIPAddress() {
-    fetch('/cgi-bin/ip.cgi')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('ip-address').textContent += data;
-        })
-        .catch(error => {
-            console.error('Error fetching IP address:', error);
-        });
-}
-
-function getUserAgent() {
-    document.getElementById('user-agent').textContent += navigator.userAgent;
-}
-
-function getVersion() {
-    // バージョン情報を取得して表示
-    fetch('/cgi-bin/version.cgi')
-        .then(response => response.text())
-        .then(version => {
-            document.getElementById("version").textContent = version;
-        });
-}
-
 function captureImage() {
     fetch('/cgi-bin/capture.cgi')
         .then(response => response.text())
@@ -105,9 +85,22 @@ function captureImage() {
         });
 }
 
+function getUserInfo() {
+    // UserInfo.cgiからすべての情報を取得する
+    fetch('/cgi-bin/UserInfo.cgi')
+        .then(response => response.json()) // CGIがJSON形式でデータを返すと仮定
+        .then(data => {
+            document.getElementById('version').textContent = data.version;
+            document.getElementById('ip-address').textContent = data.ip_address;
+            document.getElementById('user-agent').textContent = data.user_agent;
+        })
+        .catch(error => {
+            console.error('Error fetching user info:', error);
+        });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-    getIPAddress();
-    getUserAgent();
-    getVersion();
+    getUserInfo();
     loadImages();
 });
+
