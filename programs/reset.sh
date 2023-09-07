@@ -38,4 +38,4 @@ for file in /usr/local/apache2/backup/*.{cgi,txt}; do
     fi
 done
 
-echo "完了"
+echo "初期化を完了しました"
