@@ -31,10 +31,9 @@ htpasswd -bc "$htpasswd_file" "$username" "$password"
 
 #必要な権限設定
 sudo usermod -a -G video daemon
-sudo chown daemon:daemon /usr/local/apache2/htdocs/images
-sudo chown daemon:daemon /usr/local/apache2/htdocs/images2
 sudo chown daemon:daemon /usr/local/apache2/downloads
 sudo chown daemon:daemon /usr/local/apache2/backup
+sudo chown daemon:daemon /usr/local/apache2/backup/*
 sudo chown daemon:daemon /usr/local/apache2/cgi-bin
 sudo chown daemon:daemon /usr/local/apache2/cgi-bin/*
 sudo chown daemon:daemon /usr/local/apache2/htdocs
@@ -50,3 +49,25 @@ sudo chmod 755 /usr/local/apache2/htdocs/*
 sed -i '/exit 0/d' /etc/rc.local
 echo "/usr/local/apache2/bin/apachectl start" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
+
+#画像を5秒に一度取得するための設定
+echo "[Unit]
+Description=My script
+
+[Service]
+ExecStart=/usr/local/apache2/cgi-bin/picture.sh
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target" > /etc/systemd/system/picture.service
+
+# システムにこの新しいサービスを登録
+systemctl daemon-reload
+
+# サービスを有効にして起動
+systemctl enable picture.service
+systemctl start picture.service
+
+# 終了メッセージ
+echo "picture.service has been installed and started."
