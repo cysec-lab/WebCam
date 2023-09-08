@@ -10,7 +10,7 @@
 
 ## 🚀 Setup Instructions
 1. Begin by editing `setting.txt` and `target.txt` when setting up a new device. Use the commands:
-   - `vi setting.txt`
+   - ```sh`vi setting.txt`
    - `vi target.txt`
 2. Execute the following scripts in order: 
    - `sudo sh apache.sh`
