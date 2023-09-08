@@ -10,11 +10,12 @@
 
 ## 🚀 Setup Instructions
 1. Begin by editing `setting.txt` and `target.txt` when setting up a new device. Use the commands:
-   - ```sh`vi setting.txt`
-   - `vi target.txt`
-2. Execute the following scripts in order: 
+   ```sh
+   `vi setting.txt`
+   `vi target.txt`
+3. Execute the following scripts in order: 
    - `sudo sh apache.sh`
    - `sudo bash network.sh`
    - `sudo sh webcam.sh`
-3. If modifications or deletions are needed, run:
+4. If modifications or deletions are needed, run:
    - `sudo sh clear.sh`
