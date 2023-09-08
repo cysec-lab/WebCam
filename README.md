@@ -13,9 +13,11 @@
    ```sh
    vi setting.txt
    vi target.txt
-3. Execute the following scripts in order: 
-   - `sudo sh apache.sh`
-   - `sudo bash network.sh`
-   - `sudo sh webcam.sh`
+3. Execute the following scripts in order:
+   ```sh
+   sudo sh apache.sh
+   sudo bash network.sh
+   sudo sh webcam.sh
 4. If modifications or deletions are needed, run:
-   - `sudo sh clear.sh`
+   ```sh
+   sudo sh clear.sh
