@@ -24,7 +24,7 @@ function resetCamera() {
 
 function updateIframe() {
     let iframe = document.getElementById("cameraIframe");
-    iframe.src = "/images2/now.jpg?time=" + new Date().getTime(); // タイムスタンプを付けてキャッシュを防ぐ
+    iframe.src = "image.html?time=" + new Date().getTime(); // タイムスタンプを付けてキャッシュを防ぐ
 }
 
 function getUserInfo() {
