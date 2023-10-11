@@ -20,7 +20,7 @@ read_target_file
 raspistill -q 10 -o /usr/local/apache2/htdocs/images2/now.jpg -t 100
 
 # HTTP POSTリクエストを行う
-curl -X POST "$iptarget" \
+curl --max-time 2 -X POST "$iptarget" \
   -F "file_upload=@/usr/local/apache2/htdocs/images2/now.jpg" \
   -F "id=$id" \
   -F "apitoken=$apitoken"
