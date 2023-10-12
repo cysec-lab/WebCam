@@ -47,6 +47,7 @@ sudo chmod 755 /usr/local/apache2/htdocs/*
 
 #Apache2を自動起動するための設定
 sed -i '/exit 0/d' /etc/rc.local
+sed -i '/\/usr\/local\/apache2\/bin\/apachectl start/d' /etc/rc.local
 echo "/usr/local/apache2/bin/apachectl start" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
 
