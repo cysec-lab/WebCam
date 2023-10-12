@@ -36,8 +36,3 @@ NEW_NUM2=${NUM2}${HOST_PART}
 sed -i "2s/$NUM1/$NEW_NUM1/" target.txt
 sed -i "3s/$NUM2/$NEW_NUM2/" target.txt
 
-#target.txtの移動
-sudo cp target.txt /usr/local/apache2/cgi-bin/
-sudo cp target.txt /usr/local/apache2/backup/
-sudo chmod 775 /usr/local/apache2/backup/target.txt
-sudo chmod 755 /usr/local/apache2/cgi-bin/target.txt
