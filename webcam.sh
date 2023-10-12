@@ -71,3 +71,4 @@ systemctl start picture.service
 
 # 終了メッセージ
 echo "picture.service has been installed and started."
+
