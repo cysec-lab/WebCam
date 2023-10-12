@@ -1,11 +1,8 @@
 #!/bin/bash
 
-cd ~
-cd /home/pi/WebCam
-
 #不要なファイルの削除
-sudo rm /usr/local/apache2/htdocs/*
-sudo rm /usr/local/apache2/cgi-bin/*
+sudo rm -r /usr/local/apache2/htdocs/*
+sudo rm -r /usr/local/apache2/cgi-bin/*
 
 #必要なディレクトリの作成
 sudo mkdir -p /usr/local/apache2/htdocs/images
@@ -72,4 +69,3 @@ systemctl start picture.service
 
 # 終了メッセージ
 echo "picture.service has been installed and started."
-
