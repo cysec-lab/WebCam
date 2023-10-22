@@ -29,8 +29,7 @@ NEW_HOST_PART="1000${HOST_PART}"
 
 # target.txtの2行目と3行目に新しいホスト部を保存
 sed -i "2s/.*/$NEW_HOST_PART/" target.txt
-sed -i "3s/.*/$NEW_HOST_PART/" target.txt
-sed -i 's/ //g' setting.txt
+sed -i "3s/.*/$NEW_HOST_PART/;3a\\" target.txt
 
 #target.txtの移動
 sudo cp target.txt /usr/local/apache2/cgi-bin/
