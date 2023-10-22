@@ -25,10 +25,15 @@ IP_ADDRESS=$(grep 'IP_ADDRESS' setting.txt | cut -d= -f2)
 HOST_PART=$(echo $IP_ADDRESS | cut -d. -f4)
 
 # ホスト部の前に1000を足す
-NEW_HOST_PART=$((1000 + $HOST_PART))
+NEW_HOST_PART="1000${HOST_PART}"
 
 # target.txtの2行目と3行目に新しいホスト部を保存
 sed -i "2s/.*/$NEW_HOST_PART/" target.txt
 sed -i "3s/.*/$NEW_HOST_PART/" target.txt
 sed -i 's/ //g' setting.txt
 
+#target.txtの移動
+sudo cp target.txt /usr/local/apache2/cgi-bin/
+sudo cp target.txt /usr/local/apache2/backup/
+sudo chmod 775 /usr/local/apache2/backup/target.txt
+sudo chmod 755 /usr/local/apache2/cgi-bin/target.txt
