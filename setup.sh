@@ -24,15 +24,11 @@ echo -e "\nnetwork={\n\tssid=\"$SSID\"\n\tpsk=\"$PASSWORD\"\n}" | sudo tee -a /e
 IP_ADDRESS=$(grep 'IP_ADDRESS' setting.txt | cut -d= -f2)
 HOST_PART=$(echo $IP_ADDRESS | cut -d. -f4)
 
-# target.txtの2行目、3行目の数字を取得
-NUM1=$(sed -n '2p' target.txt)
-NUM2=$(sed -n '3p' target.txt)
+# ホスト部の前に1000を足す
+NEW_HOST_PART=$((1000 + $HOST_PART))
 
-# ホスト部を2行目、3行目の数字に追加
-NEW_NUM1=${NUM1}${HOST_PART}
-NEW_NUM2=${NUM2}${HOST_PART}
-
-# target.txtの2行目、3行目を更新した数字で置換
-sed -i "2s/$NUM1/$NEW_NUM1/" target.txt
-sed -i "3s/$NUM2/$NEW_NUM2/" target.txt
+# target.txtの2行目と3行目に新しいホスト部を保存
+sed -i "2s/.*/$NEW_HOST_PART/" target.txt
+sed -i "3s/.*/$NEW_HOST_PART/" target.txt
+sed -i 's/ //g' setting.txt
 

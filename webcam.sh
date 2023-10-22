@@ -9,6 +9,7 @@ sudo mkdir -p /usr/local/apache2/htdocs/images
 sudo mkdir -p /usr/local/apache2/htdocs/images2
 sudo mkdir -p /usr/local/apache2/downloads
 sudo mkdir -p /usr/local/apache2/backup
+
 #必要なファイルのコピー
 sudo cp bin/* /usr/local/apache2/cgi-bin/
 sudo cp bin/* /usr/local/apache2/backup/
@@ -70,4 +71,4 @@ systemctl enable picture.service
 systemctl start picture.service
 
 # 終了メッセージ
-echo "picture.service has been installed and started."
+echo "WebCam has been installed and started."
