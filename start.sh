@@ -39,9 +39,6 @@ echo "static ip_address=$IP_ADDRESS/24" | sudo tee -a /etc/dhcpcd.conf
 echo "static routers=$ROUTERS" | sudo tee -a /etc/dhcpcd.conf
 echo "static domain_name_servers=${DNS//,/ }" | sudo tee -a /etc/dhcpcd.conf
 
-#Wi-Fi設定
-echo -e "\nnetwork={\n\tssid=\"$SSID\"\n\tpsk=\"$PASSWORD\"\n}" | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null
-
 # setting.txtからIPアドレスを抽出してホスト部を取得
 IP_ADDRESS=$(grep 'IP_ADDRESS' setting.txt | cut -d= -f2)
 HOST_PART=$(echo $IP_ADDRESS | cut -d. -f4)
