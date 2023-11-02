@@ -6,7 +6,7 @@ Shutdown_script_path="/home/pi/allshutdown.sh"
 
 while true; do
     echo "以下のオプションから選択してください:"
-    echo "1) DNSの変更（DNSキャッシュポイズニング演習）"
+    echo "1) DNSの変更（DNSキャッシュポイズニング演習用）"
     echo "2) リカバリー（特定のリモートホストに対して）"
     echo "3) リカバリー（すべてのリモートホストに対して）"
     echo "4) リモートホストの一斉終了"
