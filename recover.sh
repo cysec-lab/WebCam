@@ -10,10 +10,10 @@ if [ -z "$host" ]; then
 fi
 
 # 不要なファイルの削除
-rsh "$host" 'rm -r /usr/local/apache2/htdocs'
-rsh "$host" 'rm -rf /usr/local/apache2/cgi-bin'
-rsh "$host" 'rm -rf /usr/local/apache2/downloads'
-rsh "$host" 'rm -rf /usr/local/apache2/backup'
+rsh "$host" 'sudo rm -r /usr/local/apache2/htdocs'
+rsh "$host" 'sudo rm -rf /usr/local/apache2/cgi-bin'
+rsh "$host" 'sudo rm -rf /usr/local/apache2/downloads'
+rsh "$host" 'sudo rm -rf /usr/local/apache2/backup'
 
 # ディレクトリの作成
 rsh "$host" 'mkdir -p /usr/local/apache2/htdocs/images'
@@ -44,31 +44,31 @@ rsh "$host" '
 # target.txtの移動と権限設定
 rsh "$host" 'cp /home/pi/target.txt /usr/local/apache2/cgi-bin/'
 rsh "$host" 'cp /home/pi/target.txt /usr/local/apache2/backup/'
-rsh "$host" 'chmod 775 /usr/local/apache2/backup/target.txt'
-rsh "$host" 'chmod 755 /usr/local/apache2/cgi-bin/target.txt'
+rsh "$host" 'sudo chmod 775 /usr/local/apache2/backup/target.txt'
+rsh "$host" 'sudo chmod 755 /usr/local/apache2/cgi-bin/target.txt'
 
 # ID/PW設定
 username="user"
 password="password"
 htpasswd_file="/usr/local/apache2/htdocs/.htpasswd"
-rsh "$host" "htpasswd -bc $htpasswd_file $username $password"
+rsh "$host" "sudo htpasswd -bc $htpasswd_file $username $password"
 
 # 権限設定
-rsh "$host" 'usermod -a -G video daemon'
-rsh "$host" 'chmod 755 /usr/local/apache2/htdocs/images'
-rsh "$host" 'chmod 755 /usr/local/apache2/htdocs/images2'
-rsh "$host" 'chmod 775 /usr/local/apache2/downloads'
-rsh "$host" 'chmod 775 /usr/local/apache2/backup'
-rsh "$host" 'chmod 755 /usr/local/apache2/cgi-bin/*'
-rsh "$host" 'chmod 755 /usr/local/apache2/htdocs/*'
-rsh "$host" 'chown daemon:daemon /usr/local/apache2/htdocs/images'
-rsh "$host" 'chown daemon:daemon /usr/local/apache2/htdocs/images2'
-rsh "$host" 'chown daemon:daemon /usr/local/apache2/downloads'
-rsh "$host" 'chown daemon:daemon /usr/local/apache2/backup'
-rsh "$host" 'chown daemon:daemon /usr/local/apache2/cgi-bin'
-rsh "$host" 'chown daemon:daemon /usr/local/apache2/cgi-bin/*'
-rsh "$host" 'chown daemon:daemon /usr/local/apache2/htdocs'
-rsh "$host" 'chown daemon:daemon /usr/local/apache2/htdocs/*'
+rsh "$host" 'sudo usermod -a -G video daemon'
+rsh "$host" 'sudo chmod 755 /usr/local/apache2/htdocs/images'
+rsh "$host" 'sudo chmod 755 /usr/local/apache2/htdocs/images2'
+rsh "$host" 'sudo chmod 775 /usr/local/apache2/downloads'
+rsh "$host" 'sudo chmod 775 /usr/local/apache2/backup'
+rsh "$host" 'sudo chmod 755 /usr/local/apache2/cgi-bin/*'
+rsh "$host" 'sudo chmod 755 /usr/local/apache2/htdocs/*'
+rsh "$host" 'sudo chown daemon:daemon /usr/local/apache2/htdocs/images'
+rsh "$host" 'sudo chown daemon:daemon /usr/local/apache2/htdocs/images2'
+rsh "$host" 'sudo chown daemon:daemon /usr/local/apache2/downloads'
+rsh "$host" 'sudo chown daemon:daemon /usr/local/apache2/backup'
+rsh "$host" 'sudo chown daemon:daemon /usr/local/apache2/cgi-bin'
+rsh "$host" 'sudo chown daemon:daemon /usr/local/apache2/cgi-bin/*'
+rsh "$host" 'sudo chown daemon:daemon /usr/local/apache2/htdocs'
+rsh "$host" 'sudo chown daemon:daemon /usr/local/apache2/htdocs/*'
 
 # Apacheの再起動
-rsh "$host" '/usr/local/apache2/bin/apachectl restart'
+rsh "$host" 'sudo /usr/local/apache2/bin/apachectl restart'
