@@ -1,37 +1,24 @@
 #!/bin/bash
 
-max_bg_procs=5
-bg_procs=0
-
+# hosts.txt ファイルからホスト名を読み込む
 while IFS= read -r host; do
-    (
-        # ディレクトリが存在する場合にのみ削除
-        rsh $host "sudo rm -r /usr/local/apache2/htdocs"
+    #権限の変更（要らないかも）
+    rsh "$host" "sudo chown pi:pi /usr/local/apache2/htdocs/*" < /dev/null
 
-        # ディレクトリの作成
-        rsh $host "sudo mkdir -p /usr/local/apache2/htdocs/images"
-        rsh $host 'sudo mkdir -p /usr/local/apache2/htdocs/images2'
+    #HTML,CSS,JavaScriptファイルの削除
+    rsh "$host" "sudo rm /usr/local/apache2/htdocs/*.{html,js,css}" < /dev/null
 
-        # 必要なファイルのコピー
-        rcp -r /home/pi/htdocs/* "$host":/usr/local/apache2/htdocs    
+    #必要ファイルのコピー
+    rcp htdocs/* "$host":/usr/local/apache2/htdocs
 
-        # 権限と所有者の設定
-        rsh $host "sudo chmod -R 755 /usr/local/apache2/htdocs"
-        rsh $host "sudo chown -R daemon:daemon /usr/local/apache2/htdocs"
+    #権限を適切に設定し直す
+    rsh "$host" "sudo chown daemon:daemon /usr/local/apache2/htdocs/*" < /dev/null
+    rsh "$host" "sudo chmod 755 /usr/local/apache2/htdocs/*" < /dev/null
 
-        # Apacheの再起動
-        rsh $host "sudo /usr/local/apache2/bin/apachectl restart"
-    ) &
-
-    # バックグラウンドプロセス数の管理
-    if (( bg_procs >= max_bg_procs )); then
-        wait -n
-        (( bg_procs-- ))
-    fi
-    (( bg_procs++ ))
-done < hosts.txt
-
-# 残りのバックグラウンドプロセスの完了を待つ
-wait
-
-echo "全ての処理が完了しました。"
+    #Apacheの再起動
+    rsh "$host" "sudo /usr/local/apache2/bin/apachectl restart" < /dev/null
+    
+    #完了メッセージ
+    echo "完了：$host"
+    
+done < "hosts.txt"
