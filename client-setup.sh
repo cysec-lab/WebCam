@@ -30,16 +30,36 @@ echo "static domain_name_servers=$DNS_ADDR" | sudo tee -a /etc/dhcpcd.conf
 tail -n 3 $configFile > target.txt
 sudo cp target.txt /usr/local/apache2/cgi-bin
 
+#!/bin/bash
+
+# rsh-server パッケージのインストール
+sudo apt-get install -y rsh-server
+
+# xinetd (インターネットスーパーサーバー) のインストール
+sudo apt-get install -y xinetd
+
 # setting.txtファイルからターゲットのIPアドレスを読み取る
 SERVER_ADDR=$(grep "SERVER_ADDR" setting.txt | cut -d "=" -f 2)
 
-# rshコマンドを利用できるようにするために、rshパッケージをインストール
-sudo apt-get install -y rsh-client
+# xinetd 用の rsh 設定ファイルの作成
+echo "service shell
+{
+    disable         = no
+    socket_type     = stream
+    wait            = no
+    user            = root
+    server          = /usr/sbin/in.rshd
+    log_on_success  += HOST USERID
+    log_on_failure  += HOST USERID
+}" | sudo tee /etc/xinetd.d/rsh
 
-# rshコマンドを利用するターゲットを指定するファイルを作成
-echo "$SERVER_ADDR" > /home/pi/.rhosts
+# xinetd サービスの再起動
+sudo systemctl restart xinetd
 
-# ファイルのアクセス権を設定
-sudo chmod 600 /home/pi/.rhosts
+# /etc/hosts.equiv ファイルの編集
+echo "$SERVER_ADDR pi" | sudo tee -a /etc/hosts.equiv
 
-上記のスクリプトも以前のように簡潔に「だ・である」調で「、や。」のかわりに「,や.」を使用し、latexで使用できるように出力して
+# 終了メッセージ
+echo "**********************************"
+echo "*Client setup has been completed.*"
+echo "**********************************"
