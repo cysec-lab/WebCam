@@ -19,3 +19,8 @@ cd $(pwd)/httpd-2.4.49
 sudo LDFLAGS=-latomic ./configure --prefix=/usr/local/apache2
 sudo make
 sudo make install
+
+# 終了メッセージ
+echo "**********************************"
+echo "*Apache-2.4.49 has been installed*"
+echo "**********************************"

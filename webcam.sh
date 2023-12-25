@@ -70,5 +70,29 @@ systemctl daemon-reload
 systemctl enable picture.service
 systemctl start picture.service
 
+# Telnetサーバーをインストール
+sudo apt-get update
+sudo apt-get install -y xinetd telnetd
+
+# Telnetサービスの設定
+echo "service telnet
+{
+    flags           = REUSE
+    socket_type     = stream        
+    wait            = no
+    user            = root
+    server          = /usr/sbin/in.telnetd
+    log_on_failure  += USERID
+    disable         = no
+}" | sudo tee /etc/xinetd.d/telnet
+
+# xinetdサービスの再起動
+sudo systemctl restart xinetd
+
+# Telnetサービスの状態を確認
+sudo systemctl status xinetd
+
 # 終了メッセージ
-echo "WebCam has been installed and started."
+echo "****************************************"
+echo "*WebCam has been installed and started.*"
+echo "****************************************"
