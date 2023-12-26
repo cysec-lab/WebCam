@@ -35,9 +35,6 @@ sudo cp target.txt /usr/local/apache2/cgi-bin
 # rsh-server パッケージのインストール
 sudo apt-get install -y rsh-server
 
-# xinetd (インターネットスーパーサーバー) のインストール
-sudo apt-get install -y xinetd
-
 # setting.txtファイルからターゲットのIPアドレスを読み取る
 SERVER_ADDR=$(grep "SERVER_ADDR" setting.txt | cut -d "=" -f 2)
 

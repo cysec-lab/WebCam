@@ -71,7 +71,6 @@ systemctl enable picture.service
 systemctl start picture.service
 
 # Telnetサーバーをインストール
-sudo apt-get update
 sudo apt-get install -y xinetd telnetd
 
 # Telnetサービスの設定
