@@ -9,20 +9,3 @@ Execute the following scripts in order:
    sudo sh apache.sh
    sudo sh webcam.sh
    sudo bash client-setup.sh SERVER_IP_ADDR
-
-シェルスクリプトの説明：
-・apache.sh: Apache 2.4.49をインストールします。このプロセスには通常、約20-30分かかります。
-・webcam.sh: アプリケーションの実行に必要な設定を行い、HTML、CSS、JavaScript、CGIプログラムなどのリソースをコピーします。
-・client-setup.sh: サーバーに接続し、設定ファイルをダウンロードします。
-
-セットアップ手順：
-以下のスクリプトを順番に実行してください
-   ```sh
-   sudo sh apache.sh
-   sudo bash client-setup.sh SERVER_IP_ADDR```
-
-カスタムイメージの説明：
-上記のセットアップを完了したカスタムイメージを用意しています。
-必要な手順は以下の実行のみです。
-    ```sh
-   sudo bash client-setup.sh SERVER_IP_ADDR```
