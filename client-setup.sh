@@ -31,10 +31,8 @@ tail -n 3 $configFile > target.txt
 sudo cp target.txt /usr/local/apache2/cgi-bin
 sudo chown daemon:daemon /usr/local/apache2/cgi-bin/target.txt
 
-#!/bin/bash
-
 # rsh-server パッケージのインストール
-sudo apt-get install -y rsh-server
+sudo apt-get install -y rsh-server xinetd
 
 # setting.txtファイルからターゲットのIPアドレスを読み取る
 SERVER_ADDR=$(grep "SERVER_ADDR" setting.txt | cut -d "=" -f 2)
