@@ -29,6 +29,7 @@ echo "static domain_name_servers=$DNS_ADDR" | sudo tee -a /etc/dhcpcd.conf
 # setting.txtの最後の3行をtarget.txtに保存する
 tail -n 3 $configFile > target.txt
 sudo cp target.txt /usr/local/apache2/cgi-bin
+sudo chown daemon:daemon /usr/local/apache2/cgi-bin/target.txt
 
 #!/bin/bash
 
