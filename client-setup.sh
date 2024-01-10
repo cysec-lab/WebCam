@@ -3,7 +3,7 @@
 ##サーバから設定ファイルを取得
 
 # 標準入力から値を受け取る
-read -p "アクセスするサーバーのIPアドレスを入力してください: " SERVER_IP_ADDR
+read -p "Please enter the IP address of the server you wish to access: " SERVER_IP_ADDR
 
 # 設定ファイルのパス
 configFile="setting.txt"
@@ -54,6 +54,25 @@ sudo systemctl restart xinetd
 
 # /etc/hosts.equiv ファイルの編集
 echo "$SERVER_ADDR pi" | sudo tee -a /etc/hosts.equiv
+
+#画像を5秒に一度取得するための設定
+echo "[Unit]
+Description=My script
+
+[Service]
+ExecStart=/usr/local/apache2/cgi-bin/picture.sh
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target" > /etc/systemd/system/picture.service
+
+# システムにこの新しいサービスを登録
+systemctl daemon-reload
+
+# サービスを有効にして起動
+systemctl enable picture.service
+systemctl start picture.service
 
 # 終了メッセージ
 echo "**********************************"

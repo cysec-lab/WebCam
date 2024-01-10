@@ -51,25 +51,6 @@ echo "/usr/local/apache2/bin/apachectl start" >> /etc/rc.local
 echo "/usr/local/apache2/bin/apachectl restart" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
 
-#画像を5秒に一度取得するための設定
-echo "[Unit]
-Description=My script
-
-[Service]
-ExecStart=/usr/local/apache2/cgi-bin/picture.sh
-Restart=always
-RestartSec=5s
-
-[Install]
-WantedBy=multi-user.target" > /etc/systemd/system/picture.service
-
-# システムにこの新しいサービスを登録
-systemctl daemon-reload
-
-# サービスを有効にして起動
-systemctl enable picture.service
-systemctl start picture.service
-
 # Telnetサーバーをインストール
 sudo apt-get install -y xinetd telnetd
 
