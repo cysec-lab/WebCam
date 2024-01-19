@@ -9,13 +9,13 @@ read -p "Please enter the IP address of the server you wish to access: " SERVER_
 configFile="setting.txt"
 
 if ! wget -O $configFile http://$SERVER_IP_ADDR/setting.php; then
-    echo "設定ファイルのダウンロードに失敗しました、終了します。"
+    echo "Failed to download the configuration file, terminating."
     exit 1
 fi
 
 # 必要な行だけを読み込む
 DNS_ADDR=$(grep '^DNS_ADDR=' $configFile | cut -d'=' -f2)
-ID=$(tail -n 1 setting.txt)
+ID=$(tail -n 1 $configFile)
 
 
 # 既存の設定を削除する
@@ -75,5 +75,5 @@ systemctl start picture.service
 # 終了メッセージ
 echo "**********************************"
 echo "*Client setup has been completed.*"
-echo "*      The device ID is $ID      *"
+echo "*    The device ID is $ID    *"
 echo "**********************************"
