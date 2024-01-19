@@ -13,14 +13,12 @@ if ! wget -O $configFile http://$SERVER_IP_ADDR/setting.php; then
     exit 1
 fi
 
-# 現在のIPアドレスを取得
-CURRENT_IP=$(hostname -I | cut -d' ' -f1)
-
 # 必要な行だけを読み込む
 DNS_ADDR=$(grep '^DNS_ADDR=' $configFile | cut -d'=' -f2)
+ID=$(tail -n 1 setting.txt)
+
 
 # 既存の設定を削除する
-sudo sed -i '/^static routers=/d' /etc/dhcpcd.conf
 sudo sed -i '/^static domain_name_servers=/d' /etc/dhcpcd.conf
 
 # ネットワーク設定を修正する
@@ -77,4 +75,5 @@ systemctl start picture.service
 # 終了メッセージ
 echo "**********************************"
 echo "*Client setup has been completed.*"
+echo "*      The device ID is $ID      *"
 echo "**********************************"
