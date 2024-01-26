@@ -18,8 +18,6 @@ sudo cp htdocs/* /usr/local/apache2/htdocs/
 sudo cp htdocs/* /usr/local/apache2/backup/
 sudo cp version.txt /usr/local/apache2/cgi-bin/
 sudo cp version.txt /usr/local/apache2/backup/
-sudo cp target.txt /usr/local/apache2/cgi-bin/
-sudo cp target.txt /usr/local/apache2/backup/
 
 #ID/PW設定
 username="user"
