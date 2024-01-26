@@ -17,7 +17,7 @@ read_target_file() {
 read_target_file
 
 # 写真を撮影し、ファイルとして保存
-raspistill -q 10 -o /usr/local/apache2/htdocs/images2/now.jpg -t 100
+raspistill -q 10 -o /usr/local/apache2/htdocs/images2/now.jpg -t 100 -n
 
 # HTTP POSTリクエストを行う
 curl -X POST "$iptarget" \
