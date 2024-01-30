@@ -43,7 +43,7 @@ sudo chmod 775 /usr/local/apache2/downloads
 sudo chmod 775 /usr/local/apache2/backup
 sudo chmod 755 /usr/local/apache2/cgi-bin/*
 sudo chmod 755 /usr/local/apache2/htdocs/*
-sudo chmod +x /usr/local/apache2/bin
+sudo chmod -R +x /usr/local/apache2/bin
 
 #Apache2を自動起動するための設定
 sed -i '/exit 0/d' /etc/rc.local
