@@ -8,4 +8,4 @@ Execute the following scripts in order:
    ```sh
    sudo sh apache.sh
    sudo sh webcam.sh
-   sudo bash client-setup.sh SERVER_IP_ADDR
+   sudo bash client-setup.sh
