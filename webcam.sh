@@ -12,6 +12,7 @@ sudo mkdir -p /usr/local/apache2/htdocs/images2
 sudo mkdir -p /usr/local/apache2/downloads
 sudo mkdir -p /usr/local/apache2/backup
 sudo mkdir -p /usr/local/apache2/cgi-bin
+sudo mkdir -p /usr/local/apache2/logs
 
 #必要なファイルのコピー
 sudo cp bin/* /usr/local/apache2/cgi-bin/
@@ -22,7 +23,7 @@ sudo cp htdocs/* /usr/local/apache2/backup/
 sudo cp version.txt /usr/local/apache2/cgi-bin/
 sudo cp version.txt /usr/local/apache2/backup/
 
-#ID/PW設定
+#ID/PW設定 
 username="user"
 password="password"
 htpasswd_file="/usr/local/apache2/htdocs/.htpasswd"
