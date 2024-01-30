@@ -5,7 +5,7 @@
 #include <dirent.h>
 #include <unistd.h>
 
-#define CAPTURE_COMMAND "raspistill -o %s -t 100"
+#define CAPTURE_COMMAND "raspistill -o %s -t 100 -n"
 
 int main(int argc, char **argv)
 {

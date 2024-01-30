@@ -1,14 +1,16 @@
 #!/bin/bash
 
+sudo apt-get install -y lynx
+
 #不要なファイルの削除
 sudo rm -r /usr/local/apache2/htdocs/*
-sudo rm -r /usr/local/apache2/cgi-bin/*
 
 #必要なディレクトリの作成
 sudo mkdir -p /usr/local/apache2/htdocs/images
 sudo mkdir -p /usr/local/apache2/htdocs/images2
 sudo mkdir -p /usr/local/apache2/downloads
 sudo mkdir -p /usr/local/apache2/backup
+sudo mkdir -p /usr/local/apache2/cgi-bin
 
 #必要なファイルのコピー
 sudo cp bin/* /usr/local/apache2/cgi-bin/
