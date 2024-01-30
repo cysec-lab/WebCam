@@ -1,0 +1,9 @@
+#! /bin/sh
+#
+# Created by configure
+
+LDFLAGS="-latomic"; export LDFLAGS
+"./configure" \
+"--prefix=/usr/local/apache2" \
+"LDFLAGS=-latomic" \
+"$@"
