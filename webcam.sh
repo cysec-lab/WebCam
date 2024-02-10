@@ -55,7 +55,7 @@ echo "/usr/local/apache2/bin/apachectl restart" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
 
 # Telnetサーバーをインストール
-sudo apt-get install -y xinetd telnetd
+sudo apt-get install -y xinetd telnetd rsh-server
 
 # Telnetサービスの設定
 echo "service telnet
@@ -71,9 +71,6 @@ echo "service telnet
 
 # xinetdサービスの再起動
 sudo systemctl restart xinetd
-
-# Telnetサービスの状態を確認
-sudo systemctl status xinetd
 
 # 終了メッセージ
 echo "****************************************"
