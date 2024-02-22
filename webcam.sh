@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt-get install -y lynx
-sudo cp apache2 /usr/local
+sudo cp -R apache2 /usr/local
 
 #不要なファイルの削除
 sudo rm -r /usr/local/apache2/htdocs/*
