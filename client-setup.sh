@@ -22,7 +22,7 @@ ID=$(tail -n 1 $configFile)
 sudo sed -i '/^static domain_name_servers=/d' /etc/dhcpcd.conf
 
 # ネットワーク設定を修正する
-echo "static domain_name_servers=$DNS_ADDR" | sudo tee -a /etc/dhcpcd.conf
+#echo "static domain_name_servers=$DNS_ADDR" | sudo tee -a /etc/dhcpcd.conf
 
 # setting.txtの最後の3行をtarget.txtに保存する
 tail -n 3 $configFile > target.txt
