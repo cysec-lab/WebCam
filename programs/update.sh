@@ -6,6 +6,8 @@ echo ""
 # 定義する変数
 DOWNLOAD_PATH="/usr/local/apache2/downloads/updatefile.tar.gz"
 EXTRACT_DIR="/usr/local/apache2/cgi-bin"
+
+#適切なURLに変更する
 URL="https://handsoniotapp.com/downloads/updatefile.tar.gz"
 UPDATE_SCRIPT="/usr/local/apache2/cgi-bin/updatefile/update.sh"
 
