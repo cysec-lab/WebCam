@@ -85,6 +85,8 @@ Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロー
 ## スクリプトのみで準備する場合
 
 以下の手順で環境構築を行なってください。ターミナルまたはコマンドプロンプトを開いて、以下のコマンドを実行してください。
+
+
 `git clone <リポジトリのURL>`<br>
 `cd WebCam`<br>
 `sudo sh webcam.sh`<br>
