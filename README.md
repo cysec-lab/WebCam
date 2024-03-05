@@ -81,3 +81,15 @@ Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロー
 
 - **アップデート機能の使用不可**  
   現在、アップデート機能は使用できません。
+
+## スクリプトのみで準備する場合
+
+以下の手順で環境構築を行なってください。ターミナルまたはコマンドプロンプトを開いて、以下のコマンドを実行してください。
+`git clone <リポジトリのURL>`<br>
+`cd WebCam`<br>
+`sudo sh webcam.sh`<br>
+`sudo sh client-setup.sh`
+
+
+
+
