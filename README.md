@@ -59,7 +59,7 @@ Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロー
 このガイドでは、WebCamにアクセスして画像を閲覧、保存する方法について説明します。
 
 ### 動作イメージのアクセス方法
-
+![Cimage](https://github.com/RyoIHA/WebCam/blob/main/Figure/cimage.png)
 **アクセス**  
    Webブラウザから`http://<WebCamのIPアドレス>`にアクセスしてください。`<WebCamのIPアドレス>`は、実際のWebCamのIPアドレスに置き換えてください。
 
