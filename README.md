@@ -45,7 +45,7 @@ Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロー
 ![Raspi-Image](https://github.com/RyoIHA/WebCam/blob/main/Figure/Imager.png)
 
 ## セットアップ手順
-
+事前にサーバー用Raspberry Piの準備を完了し、サーバー用Raspberry Pi起動に行なってください。
 1. Raspberry Piを起動し、ユーザー名`pi`、パスワード`raspberry`でログインします。
 2. ネットワーク設定を行います。`sudo raspi-config`を実行して設定してください。
 3. `/home/pi/WebCam/client_setup.sh`を実行し、設定ファイルの取得と設定を行います。
