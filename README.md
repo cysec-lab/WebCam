@@ -50,5 +50,6 @@ Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロー
 2. ネットワーク設定を行います。`sudo raspi-config`を実行して設定してください。
 3. `/home/pi/WebCam/client_setup.sh`を実行します。
 4. スクリプト実行後、プロンプトに従いサーバーのIPアドレスを入力してください。
+![Csetup](![Image_Download](https://github.com/RyoIHA/WebCam/blob/main/Figure/csetup.png))
 
 以上の手順に従って、Raspberry Pi ZeroまたはZero 2でカスタムイメージを使用したWebCamのセットアップを完了させてください。
