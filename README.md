@@ -1,46 +1,49 @@
-# Raspberry Pi Zero/Zero 2用カスタムイメージセットアップガイド
+# WebCam セットアップガイド
 
-このガイドでは、Raspberry Pi ZeroまたはRaspberry Pi Zero 2を使用してカスタムイメージのセットアップ方法を説明します。セットアップ完了後やサーバー起動時に行う手順も含まれます。
+このガイドは、Raspberry Piを使用してWebCamをセットアップする方法を説明します。手順に従って、教材インストール済みOSのインストールから環境の構築までを行ってください。
 
-## Raspberry Pi Imagerの使用方法
+## Raspberry PiにOSをインストールする
 
-1. 公式サイトからRaspberry Pi Imagerをダウンロードし、インストールします。[Raspberry Pi Imagerダウンロードページ](https://www.raspberrypi.com/software/)
+まず、Raspberry PiにOSをインストールします。このプロセスには、Raspberry Pi Imagerが必要です。
 
-## 含まれるもの
+### Raspberry Pi Imagerの使用方法
 
-- カスタムイメージ
-- 環境構築用スクリプトとファイル
+1. [Raspberry Pi Imagerダウンロードページ](https://www.raspberrypi.com/software/)からRaspberry Pi Imagerをダウンロードし、インストールしてください。
 
-## カスタムイメージをダウンロードする際の注意
+### セットアップに必要なファイル
 
-カスタムイメージはGithub LFSを使用して管理されているため、コマンドライン上でリポジトリをクローンする前に準備が必要です。詳細な手順は[GitHub LFSのインストールガイド](https://docs.github.com/ja/repositories/working-with-files/managing-large-files/installing-git-large-file-storage)を参照してください。
+- カスタムOSイメージ
+- 環境構築用のスクリプトとファイル
 
-![GitHubページからのダウンロード方法](https://github.com/BB)
+### カスタムイメージのダウンロードについて
 
-## Git LFSのインストール
+カスタムイメージはGitHub LFSを使用して管理されています。ダウンロード前に以下の手順を行ってください。
 
-- **Linuxディストリビューション**
-  - Debian系の場合: `sudo apt-get install git-lfs`
-  - Red Hat系の場合: `sudo yum install git-lfs`
+1. [GitHub LFSのインストールガイド](https://docs.github.com/ja/repositories/working-with-files/managing-large-files/installing-git-large-file-storage)に従い、GitHub LFSをインストールします。
+
+### Git LFSのインストール方法
+
+- **Linux（Debian系）**: `sudo apt-get install git-lfs`
+- **Linux（Red Hat系）**: `sudo yum install git-lfs`
 - **Windows**: `git lfs install`
 - **MacOS**: `brew install git-lfs`
-
-### 共通の手順
-   `git lfs install
-   git clone <リポジトリのURL>
-   git lfs fetch
-   git lfs checkout`
+- 共通の手順:`git lfs install`
+`git clone <リポジトリのURL>`
+`git lfs fetch`
+`git lfs checkout`
 
 
-Imagerを開き、「Use custom」を選択して、ダウンロードしたカスタムイメージをMicroSDカードにインストールします。MicroSDカードは8GB以上のものを使用してください。
+### イメージのインストール
 
-![カスタムイメージのImagerによる書き込み方法](https://github.com/AA)
+Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロードしたカスタムイメージをMicroSDカードにインストールします。MicroSDカードは8GB以上を使用してください。
 
-## 実行手順
+## セットアップ手順
 
-1. Raspberry Piの起動とログイン（ID: `pi` / PW: `raspberry`）
-2. ネットワーク設定（`sudo raspi-config`の実行から可能）
-3. `/home/pi/WebCam/client_setup.sh`の実行
-4. 実行後、サーバーのIPアドレスを入力してください。
+1. Raspberry Piを起動し、ユーザー名`pi`、パスワード`raspberry`でログインします。
+2. ネットワーク設定を行います。`sudo raspi-config`を実行して設定してください。
+3. `/home/pi/WebCam/client_setup.sh`を実行します。
+4. スクリプト実行後、プロンプトに従いサーバーのIPアドレスを入力してください。
 
-このガイドに従って、Raspberry Pi ZeroまたはZero 2でカスタムイメージのセットアップを完了させることができます。
+以上の手順に従って、Raspberry Pi ZeroまたはZero 2でカスタムイメージを使用したWebCamのセットアップを完了させてください。
+
+これは通常のテキストですが、<span style="color: red;">この部分だけ赤色</span>になります。
