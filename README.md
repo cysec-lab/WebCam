@@ -41,7 +41,7 @@
 
 Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロードしたカスタムイメージをMicroSDカードにインストールします。MicroSDカードは8GB以上を使用してください。
 
-![Raspi-Image](https://github.com/RyoIHA/WebCam/Figure/Imager.png)
+![Raspi-Image](https://github.com/RyoIHA/WebCam/blob/main/Figure/Imager.png)
 
 ## セットアップ手順
 
