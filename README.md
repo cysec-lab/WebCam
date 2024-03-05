@@ -10,9 +10,9 @@
 
 1. [Raspberry Pi Imagerダウンロードページ](https://www.raspberrypi.com/software/)からRaspberry Pi Imagerをダウンロードし、インストールしてください。
 
-### セットアップに必要なファイル
+### 内容
 
-- カスタムOSイメージ
+- 教材インストール済みOSイメージ
 - 環境構築用のスクリプトとファイル
 
 ### カスタムイメージのダウンロードについて
@@ -20,7 +20,8 @@
 カスタムイメージはGitHub LFSを使用して管理されています。ダウンロード前に以下の手順を行ってください。
 
 1. GitHubページからダウンロード
-
+   「WebCam.xz」のみをダウンロードすることが可能です。
+   ![Image_Download](https://github.com/RyoIHA/WebCam/blob/main/Figure/download.png)
 
 2. [GitHub LFSのインストールガイド](https://docs.github.com/ja/repositories/working-with-files/managing-large-files/installing-git-large-file-storage)に従い、GitHub LFSをインストールします。
 
