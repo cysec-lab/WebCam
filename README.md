@@ -90,7 +90,7 @@ Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロー
 `git clone <リポジトリのURL>`<br>
 `cd WebCam`<br>
 `sudo sh webcam.sh`<br>
-`sudo sh client-setup.sh`
+`sudo bash client-setup.sh`
 
 
 
