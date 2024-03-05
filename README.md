@@ -27,7 +27,7 @@
 - **Linux（Red Hat系）**: `sudo yum install git-lfs`
 - **Windows**: `git lfs install`
 - **MacOS**: `brew install git-lfs`
-- **共通の手順**:
+- **以降共通の手順**:<br>
    `git lfs install`<br>
    `git clone <リポジトリのURL>`<br>
    `git lfs fetch`<br>
