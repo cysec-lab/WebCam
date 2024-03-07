@@ -27,7 +27,7 @@
 
 1. GitHubページからダウンロード
    「WebCam.xz」のみをダウンロードすることが可能です。
-   ![Image_Download](https://github.com/RyoIHA/WebCam/blob/main/Figure/download.png)
+   ![Image_Download](Figure/download.png)
 
 2. [GitHub LFSのインストールガイド](https://docs.github.com/ja/repositories/working-with-files/managing-large-files/installing-git-large-file-storage)に従い、GitHub LFSをインストールします。
 
@@ -48,7 +48,7 @@
 
 Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロードしたカスタムイメージをMicroSDカードにインストールします。MicroSDカードは8GB以上を使用してください。
 
-![Raspi-Image](https://github.com/RyoIHA/WebCam/blob/main/Figure/Imager.png)
+![Raspi-Image](Figure/Imager.png)
 
 ## セットアップ手順
 事前にサーバー用Raspberry Piの準備を完了し、サーバー用Raspberry Pi起動に行なってください。
@@ -56,7 +56,7 @@ Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロー
 2. ネットワーク設定を行います。`sudo raspi-config`を実行して設定してください。
 3. `/home/pi/WebCam/client_setup.sh`を実行し、設定ファイルの取得と設定を行います。
 4. スクリプト実行後、プロンプトに従いサーバーのIPアドレスを入力してください。
-![Csetup](https://github.com/RyoIHA/WebCam/blob/main/Figure/csetup.png)
+![Csetup](Figure/csetup.png)
 
 以上の手順に従って、Raspberry Pi ZeroまたはZero 2でカスタムイメージを使用したWebCamのセットアップを完了させてください。
 
@@ -65,7 +65,7 @@ Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロー
 このガイドでは、WebCamにアクセスして画像を閲覧、保存する方法について説明します。
 
 ### 動作イメージのアクセス方法
-![Cimage](https://github.com/RyoIHA/WebCam/blob/main/Figure/cimage.png)
+![Cimage](Figure/cimage.png)
 **アクセス**  
    Webブラウザから`http://<WebCamのIPアドレス>`にアクセスしてください。`<WebCamのIPアドレス>`は、実際のWebCamのIPアドレスに置き換えてください。
 
