@@ -27,7 +27,7 @@
 カスタムイメージはGitHub LFSを使用して管理されています。以下の2種類どちらかの方法でダウンロードしてください。
 
 1. GitHubページからダウンロード
-   「WebCam.xz」のみをダウンロードすることが可能です。
+   「webcam.xz」のみをダウンロードすることが可能です。
    ![Image_Download](Figure/download.png)
 
 2. [GitHub LFSのインストールガイド](https://docs.github.com/ja/repositories/working-with-files/managing-large-files/installing-git-large-file-storage)に従い、GitHub LFSをインストールします。
@@ -94,7 +94,7 @@ Raspberry Pi Imagerを開き、「Use custom」を選択して、ダウンロー
 以下の手順で環境構築を行なってください。ターミナルまたはコマンドプロンプトを開いて、以下のコマンドを実行してください。
 
 
-`git clone <リポジトリのURL>`<br>
+`git clone https://github.com/cysec-lab/WebCam`<br>
 `cd WebCam`<br>
 `sudo sh webcam.sh`<br>
 `sudo bash client-setup.sh`
