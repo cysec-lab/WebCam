@@ -11,7 +11,7 @@
 
 ## 内容
 
-- 教材インストール済みOSイメージ(WemCam.xz)
+- 教材インストール済みOSイメージ(webcam.xz)
 - 環境構築用スクリプトとファイル
 
 ## Raspberry PiにOSをインストールする
@@ -40,7 +40,7 @@
 - **MacOS**: `brew install git-lfs`
 - **以降共通の手順**:<br>
    `git lfs install`<br>
-   `git clone <リポジトリのURL>`<br>
+   `git clone https://github.com/cysec-lab/WebCam`<br>
    `git lfs fetch`<br>
    `git lfs checkout`
 
