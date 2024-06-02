@@ -18,6 +18,8 @@
 
 まず、Raspberry PiにOSをインストールします。このプロセスには、Raspberry Pi Imagerが必要です。
 
+[イメージファイル一時保管場所](https://github.com/RyoIHA/WebCam-Image)
+
 ### Raspberry Pi Imagerの使用方法
 
 1. [Raspberry Pi Imagerダウンロードページ](https://www.raspberrypi.com/software/)からRaspberry Pi Imagerをダウンロードし、インストールしてください。
